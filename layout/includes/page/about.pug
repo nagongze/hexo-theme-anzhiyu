@@ -13,13 +13,13 @@ if site.data.about
         .author-img
           img.no-lightbox(src=url_for(avatarImg) onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.flink) + `'` alt="avatar")
         .image-dot
-      p.p.center.logo.large 关于我
+      p.p.center.logo.large 關於我
       p.p.center.small=subtitle
       .author-content
         .author-content-item.myInfoAndSayHello
-          .title1 你好，很高兴认识你👋
+          .title1 你好，很高興認識你👋
           .title2
-            | 我叫 
+            | 我叫
             span.inline-word=aboutName
           .title1=aboutDescription
         .aboutsiteTips.author-content-item
@@ -34,9 +34,9 @@ if site.data.about
                 if index < word.length - 2
                   span(class=(index === 0 ? 'first-tips' : ''))= wordItem
               span(data-up)= word[word.length - 2]
-              |  
+              |
               span(data-show)= word[word.length - 1]
-      
+
       .hello-about
         .cursor(style='translate:none;rotate:none;scale:none;transform:translate(721px,180px)')
         .shapes
@@ -45,7 +45,7 @@ if site.data.about
           .shape.shape-3(style='translate:none;rotate:none;scale:none;transform:translate(721px,180px)')
         .content
           h1=helloAbout
-      
+
       .author-content
         .author-content-item.skills
           .card-content
@@ -61,36 +61,36 @@ if site.data.about
                         .skill-icon(style=`background: ${item.color}`)
                           img.no-lightbox(title=item.name, src=item.icon)
                         .skill-name
-                          span=item.name 
+                          span=item.name
                   .etc ...
         .author-content-item.careers
           .card-content
             .author-content-item-tips=careers.tips
             span.author-content-item-title=careers.title
             .careers-group
-              .careers-item
-                .circle(style='background:#357ef5')
-                each i in careers.item
+              each i in careers.item
+                .careers-item
+                  //- .circle(style='background:#357ef5')
                   .name=i
             img.author-content-img.no-lightbox(alt=careers.tips, src=url_for(careers.img) onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.flink) + `'`)
-      
+
       .author-content
         if theme.LA.enable
           - let cover = item.statistic.cover
           .about-statistic.author-content-item(style=`background: url(${cover}) top / cover no-repeat;`)
             .card-content
-              .author-content-item-tips 数据
-              span.author-content-item-title 访问统计
+              .author-content-item-tips 資料
+              span.author-content-item-title 訪問統計
               #statistic
               .post-tips
-                | 统计信息来自 
-                a(href='https://invite.51.la/1NzKqTeb?target=V6', target='_blank', rel='noopener nofollow') 51la网站统计
+                | 統計資訊來自
+                a(href='https://invite.51.la/1NzKqTeb?target=V6', target='_blank', rel='noopener nofollow') 51la網站統計
               .banner-button-group
                 - let link = item.statistic.link
                 - let text = item.statistic.text
                 a.banner-button(onclick=`pjax.loadUrl("${link}")`)
                   i.anzhiyufont.anzhiyu-icon-arrow-circle-right
-                  |  
+                  |
                   span.banner-button-text=text
         .author-content-item-group.column.mapAndInfo
           - let mapBackground = item.map.background
@@ -108,20 +108,20 @@ if site.data.about
             span.map-title=mapTitle
               b=mapStrengthenTitle
           .author-content-item.selfInfo.single
-            - let { selfInfoTips1, selfInfoContentYear, selfInfoTips2, selfInfoContent2, selfInfoTips3, selfInfoContent3 } = item.selfInfo
+            - let { selfInfoTips1, selfInfoContent1, selfInfoTips2, selfInfoContent2, selfInfoTips3, selfInfoContent3 } = item.selfInfo
             div
               span.selfInfo-title=selfInfoTips1
-              |  
-              span.selfInfo-content#selfInfo-content-year(style='color:#43a6c6')=selfInfoContentYear
+              |
+              span.selfInfo-content(style='color:#43a6c6')=selfInfoContent1
             div
               span.selfInfo-title=selfInfoTips2
-              |  
+              |
               span.selfInfo-content(style='color:#c69043')=selfInfoContent2
             div
               span.selfInfo-title=selfInfoTips3
-              |  
+              |
               span.selfInfo-content(style='color:#b04fe6')=selfInfoContent3
-      
+
       .author-content
         .author-content-item.personalities
           - let {author_name, personality_type, photo_url, personality_img, name_url} = item.personalities
@@ -129,22 +129,22 @@ if site.data.about
           span.author-content-item-title= author_name
           .title2(style='color:#ac899c')= personality_type
           .post-tips
-            | 在 
+            | 在
             a(href='https://www.16personalities.com/', target='_blank', rel='noopener nofollow') 16personalities
-            |  了解更多关于 
+            |  瞭解更多關於
             a(target='_blank', rel='noopener external nofollow', href= name_url)= author_name
           .image
             img.no-lightbox(src=url_for(personality_img), alt='人格')
         .author-content-item.myphoto
-          img.author-content-img.no-lightbox(alt='自拍', src=url_for(photo_url))
-      
+          img.author-content-img.no-lightbox(alt='人設圖', src=url_for(photo_url))
+
       .author-content
         .author-content-item.maxim
           - let {maxim_tips, maxim_top, maxim_bottom} = item.maxim
           .author-content-item-tips=maxim_tips
           span.maxim-title
             span(style='opacity:.6;margin-bottom:8px')=maxim_top
-            |  
+            |
             span=maxim_bottom
         .author-content-item.buff
           .card-content
@@ -152,20 +152,20 @@ if site.data.about
             .author-content-item-tips=buff_tips
             span.buff-title
               span(style='opacity:.6;margin-bottom:8px')=buff_top
-              |  
+              |
               span=buff_bottom
           .card-background-icon
             i.anzhiyufont.anzhiyu-icon-dice-d20
 
       .author-content
         - let {game_tips, game_title, game_uid, game_bg} = item.game
-        .author-content-item.game-yuanshen(style=`background: url(${game_bg}) top / cover no-repeat;`)
+        .author-content-item.game-yuanshen(style=`background: url(${game_bg}) center / cover no-repeat;`)
           .card-content
             .author-content-item-tips=game_tips
             span.author-content-item-title=game_title
             .content-bottom
               .icon-group
-                .loading-bar(role='presentation', aria-hidden='true' style=`${game_title != "原神" ? "display: none": ""}`)
+                //.loading-bar(role='presentation', aria-hidden='true' style=`${game_title != "原神" ? "display: none": ""}`)
               .tips.game-yuanshen-uid=game_uid
         .author-content-item.comic-content
           .card-content
@@ -178,27 +178,20 @@ if site.data.about
                   a.comic-item(href=i.href, target="_blank", title=i.name)
                     .comic-item-cover
                       img(src=i.cover, alt=i.name)
-      
+
       .author-content
         - let {music_tips, music_title, music_link, music_bg} = item.music
-        - let {like_tips, like_title, like_bottom, like_bg} = item.like
-        .author-content-item.like-technology(style=`background: url(${like_bg}) top / cover no-repeat;`)
-          .card-content
-            .author-content-item-tips=like_tips
-            span.author-content-item-title=like_title
-            .content-bottom
-              .tips=like_bottom
-        .author-content-item.like-music(style=`background: url(${music_bg}) top / cover no-repeat;`)
-          .card-content
-            .author-content-item-tips=music_tips
-            span.author-content-item-title=music_title
-            .content-bottom
-              .tips=`跟 ${aboutName} 一起欣赏更多音乐`
-            .banner-button-group
-              a.banner-button(onclick=`pjax.loadUrl("${music_link}")`)
-                i.anzhiyufont.anzhiyu-icon-arrow-circle-right
-                |  
-                span.banner-button-text 更多推荐
+        .author-content-item.like-music(style=`background: url(${music_bg[0]}) center / cover no-repeat;`)
+            .card-content
+                .author-content-item-tips=music_tips
+                span.author-content-item-title=music_title
+                .content-bottom
+                    .tips=`跟 ${aboutName} 一起欣賞更多音樂`
+                .banner-button-group
+                    a.banner-button(onclick=`pjax.loadUrl("${music_link}")`)
+                        i.anzhiyufont.anzhiyu-icon-arrow-circle-right
+                        |
+                        span.banner-button-text 更多推薦
 
       if page.content
         .author-content
@@ -209,30 +202,32 @@ if site.data.about
       if rawData
         - let sortedByDate = rawData.slice().sort((a, b) => new Date(b.datatime) - new Date(a.datatime));
         .author-content
+          a#donate
           .author-content-item.single.reward#about-reward
-            .author-content-item-tips 致谢
-            span.author-content-item-title 赞赏名单
-            .author-content-item-description 感谢因为有你们，让我更加有创作的动力。
+            .author-content-item-tips 致謝
+            span.author-content-item-title 贊助名單
+            .author-content-item-description 感謝因為有你們，讓我更加有創作的動力。
               .reward-list-all
                 - let reward_list_amount = item.reward_list.sort((a,b)=>b.amount -  a.amount)
                 each item, index in reward_list_amount
                   .reward-list-item
                     .reward-list-item-name=item.name
                     .reward-list-bottom-group
-                      if item.amount >= 50
-                        .reward-list-item-money(style='background:var(--anzhiyu-yellow)')=`¥${item.amount}`
-                      else 
-                        .reward-list-item-money=`¥${item.amount + (item.suffix ? item.suffix : "")}`
+                      if item.amount >= 500
+                        .reward-list-item-money(style='background:var(--anzhiyu-yellow)')=`NT$${item.amount}`
+                      else
+                        .reward-list-item-money=`NT$${item.amount + (item.suffix ? item.suffix : "")}`
                       .datatime.reward-list-item-time(datatime=item.datatime)=new Date(item.datatime).toISOString().slice(0, -14)
+                    .reward-list-item-comment=item.comment
               .reward-list-updateDate
-                | 最新更新时间： 
+                | 最新更新時間：
                 time.datatime.reward-list-updateDate-time(datatime=sortedByDate[0].datatime)=new Date(sortedByDate[0].datatime).toISOString().slice(0, -14)
             .about-reward
               #con
               #TA-con(onclick="anzhiyu.rewardShowConsole()")
                 #text-con
                   #linght
-                  #TA 为TA充电
+                  #TA 贊助火鍋錢
               #tube-con
                 svg(viewBox='0 0 1028 385', fill='none', xmlns='http://www.w3.org/2000/svg')
                   path(d='M1 77H234.226L307.006 24H790', stroke='#e5e9ef', stroke-width='20')
@@ -271,6 +266,10 @@ if site.data.about
                   b=item.reward_list.length
                   | 人
 
+    script.
+      let musicBg = !{JSON.stringify(item.music.music_bg)};
+      let randomIndex = Math.floor(Math.random() * musicBg.length);
+      document.querySelector('.author-content-item.like-music').style.backgroundImage = `url(${musicBg[randomIndex]})`;
 
     script(src=url_for(theme.asset.countup_js))
     script(src=url_for(theme.asset.gsap_js))
@@ -290,27 +289,6 @@ if site.data.about
             });
 
             let statisticEl = document.getElementById("statistic");
-
-            // 自定义不显示哪个或者显示哪个，如下为不显示 最近活跃访客 和 总访问量
-            let statistic = [];
-            for (let i = 0; i < num.length; i++) {
-              if (!statisticEl) return;
-              if (i == 0) continue;
-              statisticEl.innerHTML +=
-                "<div><span>" + title[i] + "</span><span id=" + title[i] + ">" + num[i] + "</span></div>";
-              queueMicrotask(() => {
-                statistic.push(
-                  new CountUp(title[i], 0, num[i], 0, 2, {
-                    useEasing: true,
-                    useGrouping: true,
-                    separator: ",",
-                    decimal: ".",
-                    prefix: "",
-                    suffix: "",
-                  })
-                );
-              });
-            }
 
             let statisticElement = document.querySelector(".about-statistic.author-content-item");
             function statisticUP() {
@@ -338,40 +316,6 @@ if site.data.about
               const observer = new IntersectionObserver(callback, options);
               observer.observe(statisticElement);
             }
-
-            const selfInfoContentYear = new CountUp("selfInfo-content-year", 0, #{selfInfoContentYear}, 0, 2, {
-              useEasing: true,
-              useGrouping: false,
-              separator: ",",
-              decimal: ".",
-              prefix: "",
-              suffix: "",
-            });
-
-            let selfInfoContentYearElement = document.querySelector(".author-content-item.selfInfo.single");
-            function selfInfoContentYearUp() {
-              if (!selfInfoContentYearElement) return;
-
-              const callback = (entries, observer) => {
-                entries.forEach(entry => {
-                  if (entry.isIntersecting) {
-                    selfInfoContentYear.start();
-                    observer.disconnect(); // 停止观察元素，因为不再需要触发此回调
-                  }
-                });
-              };
-
-              const options = {
-                root: null,
-                rootMargin: "0px",
-                threshold: 0
-              };
-              const observer = new IntersectionObserver(callback, options);
-              observer.observe(selfInfoContentYearElement);
-            }
-
-            selfInfoContentYearUp();
-            statisticUP()
           });
 
         var pursuitInterval = null;
@@ -391,7 +335,7 @@ if site.data.about
         }, 2000);
 
         document.addEventListener("pjax:send", function () {
-          pursuitInterval && clearInterval(pursuitInterval);
+          clearInterval(pursuitInterval);
         });
 
         var helloAboutEl = document.querySelector(".hello-about");

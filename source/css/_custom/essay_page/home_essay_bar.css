@@ -11,12 +11,11 @@
   align-items: center;
   height: 50px;
   width: 100%;
-  max-width: calc(1400px - 3rem);
-  animation: slide-in .6s 0s backwards;
+  max-width: 1370px;
 }
 @media screen and (max-width: 1400px) {
   #bbTimeList {
-    max-width: calc(100% - 3rem);
+    max-width: calc(100% - 30px);
     animation: slide-in 0.6s 0s backwards;
   }
 }
@@ -30,6 +29,9 @@
 }
 #bbtalk {
   width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 #bber-talk {
   width: 100%;
@@ -39,7 +41,7 @@
   flex-direction: column;
 }
 i.bber-logo {
-  font-size: 2rem;
+  font-size: 1.2rem;
   line-height: 22px;
   margin-right: 1rem;
   transition: all 0.3s ease 0s;
@@ -70,7 +72,7 @@ i.bber-gotobb {
   white-space: nowrap;
 }
 #bber-talk .li-style:hover {
-  color: var(--anzhiyu-main);
+  color: var(--anzhiyu-lighttext);
 }
 
 #bbTimeList:hover {

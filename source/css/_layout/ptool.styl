@@ -1,43 +1,42 @@
-if hexo-config('ptool.enable') == true
-  .post-tools
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    -webkit-user-select: none;
-    flex-direction: column;
-    align-items: center;
-    .post-tools-left
-      white-space: nowrap;
-      display: flex;
-      text-overflow: ellipsis;
-      flex-wrap: wrap;
-      margin-bottom: 0.5rem;
-      justify-content: center;
-      .rewardLeftButton, .shareRight
-        display: flex
-        margin: 10px
-      +maxWidth768()
-        margin-top: 1rem;
-        justify-content: center;
-        width: 100%;
-        > div
-          margin: 8px;
-
-.post-tools-right
-  padding-right: 0px;
+.post-tools
   display: flex;
-  align-items: center;
-  margin-bottom: 0.5rem;
-  +maxWidth768()
-    flex-direction: column;
+  width: 100%;
+  justify-content: space-between;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+  -webkit-user-select: none;
+  .post-tools-left
+    white-space: nowrap;
+    display: flex;
+    text-overflow: ellipsis;
+    flex-wrap: wrap;
+    margin-bottom: 0.5rem;
+    .rewardLeftButton, .shareRight
+      display: flex
+    +maxWidth768()
+      margin-top: 1rem;
+      justify-content: center;
+      width: 100%;
+      > div
+        margin: 8px;
+  .post-tools-right
+    padding-right: 0px;
+    align-items: center;
+    white-space: nowrap;
+    display: flex;
+    text-overflow: ellipsis;
+    flex-wrap: wrap;
+    margin-bottom: 0.5rem;
+    +maxWidth768()
+      flex-direction: column;
+    
 .share-link
   margin-left: 0.5rem;
   display: flex;
   justify-content: center;
   position: relative;
   text-align: center;
-  &.mobile:hover 
+  &.mobile:hover
     .share-button
       background: var(--anzhiyu-green);
       border-color: var(--anzhiyu-green);
@@ -86,7 +85,7 @@ if hexo-config('ptool.enable') == true
       animation: donate_effcet 0.3s 0.1s ease both;
       flex-direction: column;
       border: var(--style-border-always);
-      #qrcode 
+      #qrcode
         width: 150px;
         height: 150px;
         min-width: 150px;
@@ -96,7 +95,7 @@ if hexo-config('ptool.enable') == true
         border-radius: 8px;
         margin-bottom: 8px;
         border: var(--style-border-always);
-      .reward-dec 
+      .reward-dec
         font-size: 0.6rem;
 
 if hexo-config('ptool.enable') == true && !hexo-config('ptool.mode')

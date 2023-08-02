@@ -59,7 +59,7 @@ hexo.extend.helper.register("aside_categories", function (categories, options) {
           result += `<span class="card-category-list-name">${cat.name}</span>`;
 
           if (showCount) {
-            result += `<span class="card-category-list-count">${cat.length}篇</span>`;
+            result += `<span class="card-category-list-count">${cat.length}</span>`;
           }
 
           if (isExpand && isTopParent && child) {

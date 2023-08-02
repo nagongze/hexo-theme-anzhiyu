@@ -1,7 +1,7 @@
 details.folding-tag[open] {
   border-radius: 15px !important;
-  border-color: var(--anzhiyu-main) !important;
-  border: 1px solid var(--anzhiyu-main) !important;
+  border-color: var(--anzhiyu-lighttext) !important;
+  border: 1px solid var(--anzhiyu-lighttext)!important;
 }
 
 li details.folding-tag {
@@ -19,8 +19,8 @@ details.folding-tag {
 
 details.folding-tag[open] > summary {
   color: var(--anzhiyu-white) !important;
-  background: var(--anzhiyu-main) !important;
-  border: 1px solid var(--anzhiyu-main) !important;
+  background: var(--anzhiyu-lighttext) !important;
+  border: 1px solid var(--anzhiyu-lighttext) !important;
   border-top: none !important;
   border-left: none !important;
   border-right: none !important;
@@ -36,7 +36,7 @@ details.folding-tag > summary {
   user-select: none;
 }
 details.folding-tag > summary::marker {
-  color: var(--anzhiyu-main);
+  color: var(--anzhiyu-lighttext);
   font-size: 16px;
 }
 details.folding-tag > summary::before {
@@ -54,7 +54,7 @@ details.folding-tag[open] > summary::marker {
 }
 details.folding-tag summary:hover {
   cursor: pointer;
-  background: var(--anzhiyu-main) !important;
+  background: var(--anzhiyu-lighttext) !important;
   color: var(--anzhiyu-white) !important;
   transition: 0.3s;
   box-shadow: var(--anzhiyu-shadow-main);

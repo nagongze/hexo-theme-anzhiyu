@@ -1,5 +1,5 @@
 if hexo-config('comments.use') == 'Twikoo'
-  /* 评论区表情放大 */
+  /* 留言區表情放大 */
   @keyframes owoIn
     0% {
       transform: translate(0, -95%);
@@ -119,41 +119,41 @@ if hexo-config('comments.use') == 'Twikoo'
       opacity: 1;
       height: auto;
       overflow: visible;
-  /* 输入提示 */
-  /* 设置文字内容 :nth-child(1)的作用是选择第几个 */
+  /* 輸入提示 */
+  /* 設定文字內容 :nth-child(1)的作用是選擇第幾個 */
   .el-input.el-input--small.el-input-group.el-input-group--prepend:nth-child(1):before {
-    content: "输入QQ号会自动获取昵称和头像🐧";
+    content: "輸入QQ號會自動獲取暱稱和頭像🐧";
   }
 
   .el-input.el-input--small.el-input-group.el-input-group--prepend:nth-child(2):before {
-    content: "收到回复将会发送到您的邮箱📧";
+    content: "收到回覆將會發送到您的郵箱📧";
   }
 
   .el-input.el-input--small.el-input-group.el-input-group--prepend:nth-child(3):before {
-    content: "可以通过昵称访问您的网站🔗";
+    content: "可以透過暱稱訪問您的網站🔗";
   }
 
-  /* 当用户点击输入框时显示 */
+  /* 當用戶點選輸入框時顯示 */
   .el-input.el-input--small.el-input-group.el-input-group--prepend:focus-within::before,
   .el-input.el-input--small.el-input-group.el-input-group--prepend:focus-within::after {
     display: block;
   }
 
-  /* 主内容区 */
+  /* 主內容區 */
   .el-input.el-input--small.el-input-group.el-input-group--prepend::before {
-    /* 先隐藏起来 */
+    /* 先隱藏起來 */
     display: none;
-    /* 绝对定位 */
+    /* 絕對定位 */
     position: absolute;
-    /* 向上移动60像素 */
+    /* 向上移動60畫素 */
     top: -60px;
-    /* 文字强制不换行，防止left:50%导致的文字换行 */
+    /* 文字強制不換行，防止left:50%導致的文字換行 */
     white-space: nowrap;
-    /* 圆角 */
+    /* 圓角 */
     border-radius: 10px;
-    /* 距离左边50% */
+    /* 距離左邊50% */
     left: 50%;
-    /* 然后再向左边挪动自身的一半，即可实现居中 */
+    /* 然後再向左邊挪動自身的一半，即可實現居中 */
     transform: translate(-50%);
     /* 填充 */
     padding: 14px 18px;
@@ -161,20 +161,20 @@ if hexo-config('comments.use') == 'Twikoo'
     color: #fff;
   }
 
-  /* 小角标 */
+  /* 小角標 */
   .el-input.el-input--small.el-input-group.el-input-group--prepend::after {
     display: none;
     content: "";
     position: absolute;
-    /* 内容大小（宽高）为0且边框大小不为0的情况下，每一条边（4个边）都是一个三角形，组成一个正方形。
-    我们先将所有边框透明，再给其中的一条边添加颜色就可以实现小三角图标 */
+    /* 內容大小（寬高）為0且邊框大小不為0的情況下，每一條邊（4個邊）都是一個三角形，組成一個正方形。
+    我們先將所有邊框透明，再給其中的一條邊新增顏色就可以實現小三角圖示 */
     border: 12px solid transparent;
     border-top-color: #444;
     left: 50%;
     transform: translate(-50%, -48px);
   }
 
-  /* 评论框  */
+  /* 留言框  */
   .vwrap {
     box-shadow: 2px 2px 5px #bbb;
     background: rgba(255, 255, 255, 0.3);
@@ -183,7 +183,7 @@ if hexo-config('comments.use') == 'Twikoo'
     margin: 30px 0px 30px 0px;
   }
 
-  /* 设置评论框 */
+  /* 設定留言框 */
   .vcard {
     box-shadow: 2px 2px 5px #bbb;
     background: rgba(255, 255, 255, 0.3);
@@ -226,9 +226,26 @@ if hexo-config('comments.use') == 'Twikoo'
   .tk-main .tk-content span > a {
     border-bottom: none;
   }
+
   #post-comment .comment-head {
-    font-size: 0.8em !important;
+    font-size: 0.8em;
     margin-bottom: 0.5rem;
+  }
+
+  #post-comment .comment-tips {
+    display: none;
+    background-color: rgba(103, 194, 58, 0.13);
+    border: var(--style-border-always);
+    border-color: var(--anzhiyu-green);
+    color: var(--anzhiyu-green);
+    border-radius: 8px;
+    padding: 8px 12px;
+    margin-top: 0.5rem;
+    width: 100%;
+  }
+
+  #post-comment .comment-tips.show {
+    display: flex;
   }
 
   .el-input.el-input--small.el-input-group.el-input-group--prepend:focus-within::before {
@@ -285,22 +302,6 @@ if hexo-config('comments.use') == 'Twikoo'
     padding-top: 1rem;
     border: none;
     border-top: var(--style-border-dashed);
-  }
-
-  #post-comment .comment-tips {
-    background-color: rgba(103, 194, 58, 0.13);
-    border: var(--style-border-always);
-    border-color: var(--anzhiyu-green);
-    color: var(--anzhiyu-green);
-    border-radius: 8px;
-    padding: 8px 12px;
-    margin-top: 0.5rem;
-    display: none;
-    width: 100%;
-  }
-
-  #post-comment .comment-tips.show {
-    display: flex;
   }
 
   #page .tk-comments-container > .tk-comment {

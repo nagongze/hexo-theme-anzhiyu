@@ -62,8 +62,6 @@
         i:first-child
           width: 15%
           text-align: left
-          max-height: 20px;
-          font-size: 16px;
 
         &.group
           & > i:last-child
@@ -85,7 +83,7 @@
         .site-page.child
           background-color: var(--anzhiyu-white-op) !important
 
-/* tags样式 */
+/* tags樣式 */
 #aside-content .card-tag-cloud a {
   border-radius: var(--anzhiyu-border-radius);
   display: inline-block;
@@ -106,7 +104,7 @@
   opacity: 0.4;
   margin-left: 2px;
 }
-/* 归档样式 */
+/* 歸檔樣式 */
 span.card-archive-list-count {
   width: auto;
   text-align: left;
@@ -131,14 +129,11 @@ span.card-archive-list-count {
   line-height: 0.9;
   font-weight: 700;
 }
-.card-archive-list-date,
-span.card-category-list-name {
+.card-archive-list-date {
   font-size: 13px;
   opacity: 0.6;
 }
-
-li.card-archive-list-item,
-li.card-category-list-item {
+li.card-archive-list-item {
   width: 100%;
   flex: 0 0 48%;
 }
@@ -160,7 +155,8 @@ li.card-category-list-item {
   }
   #aside-content .card-archives ul.card-archive-list > .card-archive-list-item a:hover,
   #aside-content .card-categories ul.card-category-list > .card-category-list-item a:hover {
-    padding: 3px 8px;
+    padding: 3px 3px;
+    transform: scale(1.03);
   }
   #aside-content .card-archives ul.card-archive-list > .card-archive-list-item a:active,
   #aside-content .card-categories ul.card-category-list > .card-category-list-item a:active {
@@ -189,12 +185,19 @@ li.card-category-list-item {
   justify-content: space-between;
   flex-wrap: wrap;
 }
-/* 个人card */
+/* 個人card */
 #aside-content .card-info #card-info-btn {
   border-radius: var(--anzhiyu-border-radius);
 }
 
-/* 最近文章样式修改 */
+#aside-content .card-info .card-info-social-icons .social-icon:first-child {
+  margin-left: 0;
+}
+#aside-content .card-info .card-info-social-icons .social-icon:last-child {
+  margin-right: 0;
+}
+
+/* 最近文章樣式修改 */
 #aside-content .aside-list > .aside-list-item .content > time {
   display: none;
 }
@@ -227,13 +230,6 @@ li.card-category-list-item {
 #aside-content .aside-list > .aside-list-item:hover .thumbnail > img {
   transform: scale(1);
 }
-#aside-content .aside-list > .aside-list-item:not(:last-child) {
-  border-bottom: 0 dashed var(--anzhiyu-background) !important;
-}
-#aside-content .aside-list > .aside-list-item .thumbnail {
-  border-radius: var(--anzhiyu-border-radius);
-  border: var(--style-border);
-}
 #aside-content .aside-list > .aside-list-item:hover {
   background: var(--anzhiyu-main);
   color: var(--anzhiyu-white);
@@ -241,7 +237,7 @@ li.card-category-list-item {
   box-shadow: var(--anzhiyu-shadow-main);
 }
 #aside-content .aside-list > .aside-list-item:hover a {
-  color: var(--anzhiyu-white) !important;
+  color: var(--anzhiyu-white);
 }
 .card-widget.card-recent-post {
   padding: 0.4rem 1rem !important;
@@ -308,11 +304,11 @@ li.card-category-list-item {
   }
 }
 
-/* 侧边栏归档 */
+/* 側邊欄歸檔 */
 @media screen and (min-width: 900px) {
   #aside-content .card-archives ul.card-archive-list > .card-archive-list-item a,
   #aside-content .card-categories ul.card-category-list > .card-category-list-item a {
-    padding: 3px 5px;
+    padding: 3px 3px;
   }
 }
 

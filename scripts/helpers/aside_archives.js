@@ -70,7 +70,7 @@ hexo.extend.helper.register("aside_archives", function (options = {}) {
   const len = data.length;
   const Judge = limit === 0 ? len : Math.min(len, limit);
 
-  result += `<div class="item-headline"><i class="anzhiyufont anzhiyu-icon-archive"></i><span>${this._p(
+  result += `<div class="item-headline"><i class="anzhiyufont anzhiyu-icon-box-archive"></i><span>${this._p(
     "aside.card_archives"
   )}</span>`;
 

@@ -58,18 +58,15 @@ const anzhiyu = {
     }
   },
 
-  snackbarShow: (text, showActionFunction = false, duration = 2000, actionText = false) => {
+  snackbarShow: (text, showAction = false, duration = 2000) => {
     const { position, bgLight, bgDark } = GLOBAL_CONFIG.Snackbar;
     const bg = document.documentElement.getAttribute("data-theme") === "light" ? bgLight : bgDark;
     const root = document.querySelector(":root");
     root.style.setProperty("--anzhiyu-snackbar-time", duration + "ms");
-
     Snackbar.show({
       text: text,
       backgroundColor: bg,
-      onActionClick: showActionFunction,
-      actionText: actionText,
-      showAction: actionText,
+      showAction: showAction,
       duration: duration,
       pos: position,
       customClass: "snackbar-css",
@@ -264,7 +261,7 @@ const anzhiyu = {
     }
   },
 
-  //更改主题色
+  //更改主題色
   changeThemeMetaColor: function (color) {
     // console.info(`%c ${color}`, `font-size:36px;color:${color};`);
     if (themeColorMeta !== null) {
@@ -272,7 +269,7 @@ const anzhiyu = {
     }
   },
 
-  //顶栏自适应主题色
+  //頂欄自適應主題色
   initThemeColor: function () {
     let themeColor = getComputedStyle(document.documentElement)
       .getPropertyValue("--anzhiyu-bar-background")
@@ -303,7 +300,7 @@ const anzhiyu = {
       activateDarkMode();
       saveToLocal.set("theme", "dark", 2);
       GLOBAL_CONFIG.Snackbar !== undefined && anzhiyu.snackbarShow(GLOBAL_CONFIG.Snackbar.day_to_night);
-      rightMenu.querySelector(".menu-darkmode-text").textContent = "浅色模式";
+      rightMenu.querySelector(".menu-darkmode-text").textContent = "淺色模式";
     } else {
       activateLightMode();
       saveToLocal.set("theme", "light", 2);
@@ -314,36 +311,18 @@ const anzhiyu = {
     typeof runMermaid === "function" && window.runMermaid();
     rm && rm.hideRightMenu();
     anzhiyu.darkModeStatus();
-
-    const root = document.querySelector(":root");
-    root.style.setProperty("--anzhiyu-bar-background", "var(--anzhiyu-meta-theme-color)");
-    anzhiyu.initThemeColor();
-
-    // 要改回来默认主色
-    document.documentElement.style.setProperty(
-      "--anzhiyu-main",
-      getComputedStyle(document.documentElement).getPropertyValue("--anzhiyu-theme")
-    );
-    document.documentElement.style.setProperty(
-      "--anzhiyu-theme-op",
-      getComputedStyle(document.documentElement).getPropertyValue("--anzhiyu-main") + "23"
-    );
-    document.documentElement.style.setProperty(
-      "--anzhiyu-theme-op-deep",
-      getComputedStyle(document.documentElement).getPropertyValue("--anzhiyu-main") + "dd"
-    );
   },
-  //是否是文章页
+  //是否是文章頁
   is_Post: function () {
-    var url = window.location.href; //获取url
+    var url = window.location.href; //獲取url
     if (url.indexOf("/posts/") >= 0) {
-      //判断url地址中是否包含code字符串
+      //判斷url地址中是否包含code字串
       return true;
     } else {
       return false;
     }
   },
-  //监测是否在页面开头
+  //監測是否在頁面開頭
   addNavBackgroundInit: function () {
     var scrollTop = 0,
       bodyScrollTop = 0,
@@ -361,16 +340,16 @@ const anzhiyu = {
       pageHeaderEl.classList.add("nav-visible");
     }
   },
-  // 下载图片
+  // 下載圖片
   downloadImage: function (imgsrc, name) {
-    //下载图片地址和图片名
+    //下載圖片地址和圖片名
     rm.hideRightMenu();
     if (rm.downloadimging == false) {
       rm.downloadimging = true;
-      anzhiyu.snackbarShow("正在下载中，请稍后", false, 10000);
+      anzhiyu.snackbarShow("正在下載中，請稍後", false, 10000);
       setTimeout(function () {
         let image = new Image();
-        // 解决跨域 Canvas 污染问题
+        // 解決跨域 Canvas 汙染問題
         image.setAttribute("crossOrigin", "anonymous");
         image.onload = function () {
           let canvas = document.createElement("canvas");
@@ -378,22 +357,22 @@ const anzhiyu = {
           canvas.height = image.height;
           let context = canvas.getContext("2d");
           context.drawImage(image, 0, 0, image.width, image.height);
-          let url = canvas.toDataURL("image/png"); //得到图片的base64编码数据
-          let a = document.createElement("a"); // 生成一个a元素
-          let event = new MouseEvent("click"); // 创建一个单击事件
-          a.download = name || "photo"; // 设置图片名称
-          a.href = url; // 将生成的URL设置为a.href属性
-          a.dispatchEvent(event); // 触发a的单击事件
+          let url = canvas.toDataURL("image/png"); //得到圖片的base64編碼資料
+          let a = document.createElement("a"); // 生成一個a元素
+          let event = new MouseEvent("click"); // 建立一個單擊事件
+          a.download = name || "photo"; // 設定圖片名稱
+          a.href = url; // 將生成的URL設定為a.href屬性
+          a.dispatchEvent(event); // 觸發a的單擊事件
         };
         image.src = imgsrc;
-        anzhiyu.snackbarShow("图片已添加盲水印，请遵守版权协议");
+        anzhiyu.snackbarShow("圖片已新增盲水印，請遵守版權協議");
         rm.downloadimging = false;
       }, "10000");
     } else {
-      anzhiyu.snackbarShow("有正在进行中的下载，请稍后再试");
+      anzhiyu.snackbarShow("有正在進行中的下載，請稍後再試");
     }
   },
-  //禁止图片右键单击
+  //禁止圖片右鍵單擊
   stopImgRightDrag: function () {
     var img = document.getElementsByTagName("img");
     for (var i = 0; i < img.length; i++) {
@@ -402,12 +381,12 @@ const anzhiyu = {
       });
     }
   },
-  //滚动到指定id
+  //滾動到指定id
   scrollTo: function (id) {
     var domTop = document.querySelector(id).offsetTop;
     window.scrollTo(0, domTop - 80);
   },
-  //隐藏侧边栏
+  //隱藏側邊欄
   hideAsideBtn: () => {
     // Hide aside
     const $htmlDom = document.documentElement.classList;
@@ -419,21 +398,21 @@ const anzhiyu = {
       ? document.querySelector("#consoleHideAside").classList.add("on")
       : document.querySelector("#consoleHideAside").classList.remove("on");
   },
-  // 热评切换
+  // 熱門留言切換
   switchCommentBarrage: function () {
     let commentBarrage = document.querySelector(".comment-barrage");
     if (commentBarrage) {
       if (window.getComputedStyle(commentBarrage).display === "flex") {
         commentBarrage.style.display = "none";
-        anzhiyu.snackbarShow("✨ 已关闭评论弹幕");
-        document.querySelector(".menu-commentBarrage-text").textContent = "显示热评";
+        anzhiyu.snackbarShow("✨ 已關閉留言彈幕");
+        document.querySelector(".menu-commentBarrage-text").textContent = "顯示熱門留言";
         document.querySelector("#consoleCommentBarrage").classList.remove("on");
         localStorage.setItem("commentBarrageSwitch", "false");
       } else {
         commentBarrage.style.display = "flex";
-        document.querySelector(".menu-commentBarrage-text").textContent = "关闭热评";
+        document.querySelector(".menu-commentBarrage-text").textContent = "關閉熱門留言";
         document.querySelector("#consoleCommentBarrage").classList.add("on");
-        anzhiyu.snackbarShow("✨ 已开启评论弹幕");
+        anzhiyu.snackbarShow("✨ 已開啟留言彈幕");
         localStorage.removeItem("commentBarrageSwitch");
       }
     }
@@ -451,7 +430,7 @@ const anzhiyu = {
           disableOnInteraction: true,
           delay: 3000,
         },
-        mousewheel: true,
+        mousewheel: false,
       });
 
       let essay_bar_comtainer = document.getElementById("bbtalk");
@@ -476,25 +455,15 @@ const anzhiyu = {
       $list.scrollLeft = $target.offsetLeft - $list.offsetLeft - ($list.offsetWidth - $target.offsetWidth) / 2;
     }
   },
-  // catalog激活
+  // catalog啟用
   catalogActive: function () {
     const $list = document.getElementById("catalog-list");
     if ($list) {
-      const pathname = decodeURIComponent(window.location.pathname);
-      const catalogListItems = $list.querySelectorAll(".catalog-list-item");
-
-      let $catalog = null;
-      catalogListItems.forEach(item => {
-        if (pathname.startsWith(item.id)) {
-          $catalog = item;
-          return;
-        }
-      });
-
+      const $catalog = document.getElementById(decodeURIComponent(window.location.pathname));
       anzhiyu.scrollByMouseWheel($list, $catalog);
     }
   },
-  // Page Tag 激活
+  // Page Tag 啟用
   tagsPageActive: function () {
     const $list = document.getElementById("tag-page-tags");
     if ($list) {
@@ -502,8 +471,8 @@ const anzhiyu = {
       anzhiyu.scrollByMouseWheel($list, $tagPageTags);
     }
   },
-  // 修改时间显示"最近"
-  diffDate: function (d, more = false, simple = false) {
+  // 修改時間顯示"最近"
+  diffDate: function (d, more = false) {
     const dateNow = new Date();
     const datePost = new Date(d);
     const dateDiff = dateNow.getTime() - datePost.getTime();
@@ -530,31 +499,12 @@ const anzhiyu = {
       } else {
         result = GLOBAL_CONFIG.date_suffix.just;
       }
-    } else if (simple) {
-      const monthCount = dateDiff / month;
-      const dayCount = dateDiff / day;
-      const hourCount = dateDiff / hour;
-      const minuteCount = dateDiff / minute;
-      if (monthCount >= 1) {
-        result = datePost.toLocaleDateString().replace(/\//g, "-");
-      } else if (dayCount >= 1 && dayCount <= 3) {
-        result = parseInt(dayCount) + " " + GLOBAL_CONFIG.date_suffix.day;
-      } else if (dayCount > 3) {
-        result = datePost.getMonth() + 1 + "/" + datePost.getDate();
-      } else if (hourCount >= 1) {
-        result = parseInt(hourCount) + " " + GLOBAL_CONFIG.date_suffix.hour;
-      } else if (minuteCount >= 1) {
-        result = parseInt(minuteCount) + " " + GLOBAL_CONFIG.date_suffix.min;
-      } else {
-        result = GLOBAL_CONFIG.date_suffix.just;
-      }
     } else {
       result = parseInt(dateDiff / day);
     }
     return result;
   },
-
-  // 修改即刻中的时间显示
+  // 修改即刻中的時間顯示
   changeTimeInEssay: function () {
     document.querySelector("#bber") &&
       document.querySelectorAll("#bber time").forEach(function (e) {
@@ -563,7 +513,7 @@ const anzhiyu = {
         (t.innerText = anzhiyu.diffDate(datetime, true)), (t.style.display = "inline");
       });
   },
-  // 修改相册集中的时间
+  // 修改圖片庫中的時間
   changeTimeInAlbumDetail: function () {
     document.querySelector("#album_detail") &&
       document.querySelectorAll("#album_detail time").forEach(function (e) {
@@ -572,7 +522,7 @@ const anzhiyu = {
         (t.innerText = anzhiyu.diffDate(datetime, true)), (t.style.display = "inline");
       });
   },
-  // 刷新瀑布流
+  // 重新整理瀑布流
   reflashEssayWaterFall: function () {
     const waterfallEl = document.getElementById("waterfall");
     if (waterfallEl) {
@@ -584,55 +534,99 @@ const anzhiyu = {
   },
   sayhi: function () {
     const $sayhiEl = document.getElementById("author-info__sayhi");
-  
-    const getTimeState = () => {
-      const hour = new Date().getHours();
-      let message = "";
-  
-      if (hour >= 0 && hour <= 5) {
-        message = "睡个好觉，保证精力充沛";
-      } else if (hour > 5 && hour <= 10) {
-        message = "一日之计在于晨";
-      } else if (hour > 10 && hour <= 14) {
-        message = "吃饱了才有力气干活";
-      } else if (hour > 14 && hour <= 18) {
-        message = "集中精力，攻克难关";
-      } else if (hour > 18 && hour <= 24) {
-        message = "不要太劳累了，早睡更健康";
-      }
-  
-      return message;
+    const getTimeState = function () {
+      var e = new Date().getHours(),
+        t = "";
+      return (
+        0 <= e && e <= 5
+          ? (t = "晚安😴")
+          : 5 < e && e <= 10
+          ? (t = "早安👋")
+          : 10 < e && e <= 14
+          ? (t = "午安👋")
+          : 14 < e && e <= 18
+          ? (t = "下安👋")
+          : 18 < e && e <= 24 && (t = "晚安👋"),
+        t
+      );
     };
-  
-    if ($sayhiEl) {
-      $sayhiEl.innerHTML = getTimeState();
-    }
+    $sayhiEl && ($sayhiEl.innerHTML = getTimeState() + "！我是");
   },
-  
-  // 友链注入预设评论
+  // 友鏈注入預設留言
   addFriendLink() {
-    var input = document.getElementsByClassName("el-textarea__inner")[0];
+    var input = document.getElementById('wl-edit');
     if (!input) return;
     let evt = document.createEvent("HTMLEvents");
     evt.initEvent("input", true, true);
     input.value =
-      "昵称（请勿包含博客等字样）：\n网站地址（要求博客地址，请勿提交个人主页）：\n头像图片url（请提供尽可能清晰的图片，我会上传到我自己的图床）：\n描述：\n站点截图（可选）：\n";
+      "暱稱（請勿包含部落格等字樣）：\n網站地址（要求部落格地址，請勿提交個人主頁）：\n頭像圖片url（請提供儘可能清晰的圖片，我會上傳到我自己的圖床）：\n描述：\n站點截圖（可選）：\n";
     input.dispatchEvent(evt);
     input.focus();
     input.setSelectionRange(-1, -1);
   },
-  //切换音乐播放状态
+  // MMD相關推薦
+  addCollectLink() {
+    var input = document.getElementById('wl-edit');
+    if (!input) return;
+    let evt = document.createEvent("HTMLEvents");
+    evt.initEvent("input", true, true);
+    input.value =
+      "作者名稱：\n配布或預覽網址：\n分類：\n描述：\n";
+    input.dispatchEvent(evt);
+    input.focus();
+    input.setSelectionRange(-1, -1);
+    if (document.getElementById("comment-starstips")) {
+      document.getElementById("comment-starstips").classList.add("show");
+    }
+  },
+  // 工具收藏推薦
+  addStarsLink() {
+    var input = document.getElementById('wl-edit');
+    if (!input) return;
+    let evt = document.createEvent("HTMLEvents");
+    evt.initEvent("input", true, true);
+    input.value =
+      "名稱：\n網址：\n分類：\n描述：\n";
+    input.dispatchEvent(evt);
+    input.focus();
+    input.setSelectionRange(-1, -1);
+    if (document.getElementById("comment-starstips")) {
+      document.getElementById("comment-starstips").classList.add("show");
+    }
+  },
+  //友鏈隨機傳送
+  travelling() {
+    var fetchUrl = GLOBAL_CONFIG.friends_vue_info.apiurl + "randomfriend";
+    fetch(fetchUrl)
+      .then(res => res.json())
+      .then(json => {
+        var name = json.name;
+        var link = json.link;
+        Snackbar.show({
+          text:
+            "點選前往按鈕進入隨機一個友鏈，不保證跳轉網站的安全性和可用性。本次隨機到的是本站友鏈：「" + name + "」",
+          duration: 8000,
+          pos: "top-center",
+          actionText: "前往",
+          onActionClick: function (element) {
+            element.style.opacity = 0;
+            window.open(link, "_blank");
+          },
+        });
+      });
+  },
+  //切換音樂播放狀態
   musicToggle: function (changePaly = true) {
     if (!anzhiyu_musicFirst) {
       anzhiyu.musicBindEvent();
       anzhiyu_musicFirst = true;
     }
-    let msgPlay = '<i class="anzhiyufont anzhiyu-icon-play"></i><span>播放音乐</span>';
-    let msgPause = '<i class="anzhiyufont anzhiyu-icon-pause"></i><span>暂停音乐</span>';
+    let msgPlay = '<i class="anzhiyufont anzhiyu-icon-play"></i><span>播放音樂</span>';
+    let msgPause = '<i class="anzhiyufont anzhiyu-icon-pause"></i><span>暫停音樂</span>';
     if (anzhiyu_musicPlaying) {
       navMusicEl.classList.remove("playing");
       document.getElementById("menu-music-toggle").innerHTML = msgPlay;
-      document.getElementById("nav-music-hoverTips").innerHTML = "音乐已暂停";
+      document.getElementById("nav-music-hoverTips").innerHTML = "音樂已暫停";
       document.querySelector("#consoleMusic").classList.remove("on");
       anzhiyu_musicPlaying = false;
       navMusicEl.classList.remove("stretch");
@@ -646,7 +640,7 @@ const anzhiyu = {
     if (changePaly) document.querySelector("#nav-music meting-js").aplayer.toggle();
     rm.hideRightMenu();
   },
-  // 音乐伸缩
+  // 音樂伸縮
   musicTelescopic: function () {
     if (navMusicEl.classList.contains("stretch")) {
       navMusicEl.classList.remove("stretch");
@@ -655,19 +649,19 @@ const anzhiyu = {
     }
   },
 
-  //音乐上一曲
+  //音樂上一曲
   musicSkipBack: function () {
     navMusicEl.querySelector("meting-js").aplayer.skipBack();
     rm.hideRightMenu();
   },
 
-  //音乐下一曲
+  //音樂下一曲
   musicSkipForward: function () {
     navMusicEl.querySelector("meting-js").aplayer.skipForward();
     rm.hideRightMenu();
   },
 
-  //获取音乐中的名称
+  //獲取音樂中的名稱
   musicGetName: function () {
     var x = document.querySelector(".aplayer-title");
     var arr = [];
@@ -677,7 +671,7 @@ const anzhiyu = {
     return arr[0];
   },
 
-  // 检测显示模式
+  // 檢測顯示模式
   darkModeStatus: function () {
     let theme = document.documentElement.getAttribute("data-theme") === "dark" ? "dark" : "light";
     const menuDarkmodeText = document.querySelector(".menu-darkmode-text");
@@ -685,67 +679,59 @@ const anzhiyu = {
     if (theme === "light") {
       menuDarkmodeText.textContent = "深色模式";
     } else {
-      menuDarkmodeText.textContent = "浅色模式";
+      menuDarkmodeText.textContent = "淺色模式";
     }
   },
 
-  //初始化console图标
+  //初始化console圖示
   initConsoleState: function () {
-    //初始化隐藏边栏
+    //初始化隱藏邊欄
     const $htmlDomClassList = document.documentElement.classList;
     $htmlDomClassList.contains("hide-aside")
       ? document.querySelector("#consoleHideAside").classList.add("on")
       : document.querySelector("#consoleHideAside").classList.remove("on");
   },
 
-  // 显示打赏中控台
+  // 顯示贊助控制檯
   rewardShowConsole: function () {
-    // 判断是否为赞赏打开控制台
+    // 判斷是否為贊助開啟控制檯
     consoleEl.classList.add("reward-show");
     anzhiyu.initConsoleState();
   },
-  // 显示中控台
+  // 顯示中控臺
   showConsole: function () {
-    consoleEl.classList.add("show");
+    document.querySelector("#console").classList.add("show");
     anzhiyu.initConsoleState();
   },
 
-  //隐藏中控台
+  //隱藏控制檯
   hideConsole: function () {
     if (consoleEl.classList.contains("show")) {
-      // 如果是一般控制台，就关闭一般控制台
+      // 如果是一般控制檯，就關閉一般控制檯
       consoleEl.classList.remove("show");
     } else if (consoleEl.classList.contains("reward-show")) {
-      // 如果是打赏控制台，就关闭打赏控制台
+      // 如果是贊助控制檯，就關閉贊助控制檯
       consoleEl.classList.remove("reward-show");
     }
-    // 获取center-console元素
-    const centerConsole = document.getElementById("center-console");
-
-    // 检查center-console是否被选中
-    if (centerConsole.checked) {
-      // 取消选中状态
-      centerConsole.checked = false;
-    }
   },
-  // 取消加载动画
+  // 取消載入動畫
   hideLoading: function () {
     document.getElementById("loading-box").classList.add("loaded");
   },
-  // 将音乐缓存播放
+  // 將音樂快取播放
   cacheAndPlayMusic() {
     let data = localStorage.getItem("musicData");
     if (data) {
       data = JSON.parse(data);
       const currentTime = new Date().getTime();
       if (currentTime - data.timestamp < 24 * 60 * 60 * 1000) {
-        // 如果缓存的数据没有过期，直接使用
+        // 如果快取的資料沒有過期，直接使用
         anzhiyu.playMusic(data.songs);
         return;
       }
     }
 
-    // 否则重新从服务器获取数据
+    // 否則重新從伺服器獲取資料
     fetch("/json/music.json")
       .then(response => response.json())
       .then(songs => {
@@ -757,7 +743,7 @@ const anzhiyu = {
         anzhiyu.playMusic(songs);
       });
   },
-  // 播放音乐
+  // 播放音樂
   playMusic(songs) {
     const anMusicPage = document.getElementById("anMusic-page");
     const metingAplayer = anMusicPage.querySelector("meting-js").aplayer;
@@ -765,15 +751,15 @@ const anzhiyu = {
     const randomSong = songs[randomIndex];
     const allAudios = metingAplayer.list.audios;
     if (!selectRandomSong.includes(randomSong.name)) {
-      // 如果随机到的歌曲已经未被随机到过，就添加进metingAplayer.list
+      // 如果隨機到的歌曲已經未被隨機到過，就新增進metingAplayer.list
       metingAplayer.list.add([randomSong]);
-      // 播放最后一首(因为是添加到了最后)
+      // 播放最後一首(因為是新增到了最後)
       metingAplayer.list.switch(allAudios.length);
-      // 添加到已被随机的歌曲列表
+      // 新增到已被隨機的歌曲列表
       selectRandomSong.push(randomSong.name);
     } else {
-      // 随机到的歌曲已经在播放列表中了
-      // 直接继续随机直到随机到没有随机过的歌曲，如果全部随机过了就切换到对应的歌曲播放即可
+      // 隨機到的歌曲已經在播放列表中了
+      // 直接繼續隨機直到隨機到沒有隨機過的歌曲，如果全部隨機過了就切換到對應的歌曲播放即可
       let songFound = false;
       while (!songFound) {
         const newRandomIndex = Math.floor(Math.random() * songs.length);
@@ -784,42 +770,42 @@ const anzhiyu = {
           selectRandomSong.push(newRandomSong.name);
           songFound = true;
         }
-        // 如果全部歌曲都已被随机过，跳出循环
+        // 如果全部歌曲都已被隨機過，跳出迴圈
         if (selectRandomSong.length === songs.length) {
           break;
         }
       }
       if (!songFound) {
-        // 如果全部歌曲都已被随机过，切换到对应的歌曲播放
+        // 如果全部歌曲都已被隨機過，切換到對應的歌曲播放
         const palyMusicIndex = allAudios.findIndex(song => song.name === randomSong.name);
         if (palyMusicIndex != -1) metingAplayer.list.switch(palyMusicIndex);
       }
     }
 
-    console.info("已随机歌曲：", selectRandomSong, "本次随机歌曲：", randomSong.name);
+    console.info("已隨機歌曲：", selectRandomSong, "本次隨機歌曲：", randomSong.name);
   },
-  // 音乐节目切换背景
+  // 音樂節目切換背景
   changeMusicBg: function (isChangeBg = true) {
     const anMusicBg = document.getElementById("an_music_bg");
 
     if (isChangeBg) {
-      // player listswitch 会进入此处
+      // player listswitch 會進入此處
       const musiccover = document.querySelector("#anMusic-page .aplayer-pic");
       anMusicBg.style.backgroundImage = musiccover.style.backgroundImage;
       $web_container.style.background = "none";
     } else {
-      // 第一次进入，绑定事件，改背景
+      // 第一次進入，繫結事件，改背景
       let timer = setInterval(() => {
         const musiccover = document.querySelector("#anMusic-page .aplayer-pic");
-        // 确保player加载完成
+        // 確保player載入完成
         if (musiccover) {
           clearInterval(timer);
-          // 绑定事件
+          // 繫結事件
           anzhiyu.addEventListenerMusic();
-          // 确保第一次能够正确替换背景
+          // 確保第一次能夠正確替換背景
           anzhiyu.changeMusicBg();
 
-          // 暂停nav的音乐
+          // 暫停nav的音樂
           if (
             document.querySelector("#nav-music meting-js").aplayer &&
             !document.querySelector("#nav-music meting-js").aplayer.audio.paused
@@ -830,7 +816,7 @@ const anzhiyu = {
       }, 100);
     }
   },
-  // 获取自定义播放列表
+  // 獲取自定義播放列表
   getCustomPlayList: function () {
     if (!window.location.pathname.startsWith("/music/")) {
       return;
@@ -848,7 +834,7 @@ const anzhiyu = {
     }
     anzhiyu.changeMusicBg(false);
   },
-  //隐藏今日推荐
+  //隱藏今日推薦
   hideTodayCard: function () {
     if (document.getElementById("todayCard")) {
       document.getElementById("todayCard").classList.add("hide");
@@ -860,7 +846,7 @@ const anzhiyu = {
     }
   },
 
-  // 监听音乐背景改变
+  // 監聽音樂背景改變
   addEventListenerMusic: function () {
     const anMusicPage = document.getElementById("anMusic-page");
     const aplayerIconMenu = anMusicPage.querySelector(".aplayer-info .aplayer-time .aplayer-icon-menu");
@@ -891,14 +877,14 @@ const anzhiyu = {
 
     document.getElementById("menu-mask").addEventListener("click", anMusicPageMenuAask);
 
-    // 监听增加单曲按钮
+    // 監聽增加單曲按鈕
     anMusicBtnGetSong.addEventListener("click", () => {
       if (changeMusicListFlag) {
         const anMusicPage = document.getElementById("anMusic-page");
         const metingAplayer = anMusicPage.querySelector("meting-js").aplayer;
         const allAudios = metingAplayer.list.audios;
         const randomIndex = Math.floor(Math.random() * allAudios.length);
-        // 随机播放一首
+        // 隨機播放一首
         metingAplayer.list.switch(randomIndex);
       } else {
         anzhiyu.cacheAndPlayMusic();
@@ -906,26 +892,26 @@ const anzhiyu = {
     });
     anMusicRefreshBtn.addEventListener("click", () => {
       localStorage.removeItem("musicData");
-      anzhiyu.snackbarShow("已移除相关缓存歌曲");
+      anzhiyu.snackbarShow("已移除相關快取歌曲");
     });
     anMusicSwitchingBtn.addEventListener("click", () => {
       anzhiyu.changeMusicList();
     });
 
-    // 监听键盘事件
-    //空格控制音乐
+    // 監聽鍵盤事件
+    //空格控制音樂
     document.addEventListener("keydown", function (event) {
-      //暂停开启音乐
+      //暫停開啟音樂
       if (event.code === "Space") {
         event.preventDefault();
         metingAplayer.toggle();
       }
-      //切换下一曲
+      //切換下一曲
       if (event.keyCode === 39) {
         event.preventDefault();
         metingAplayer.skipForward();
       }
-      //切换上一曲
+      //切換上一曲
       if (event.keyCode === 37) {
         event.preventDefault();
         metingAplayer.skipBack();
@@ -937,7 +923,7 @@ const anzhiyu = {
           metingAplayer.volume(musicVolume, true);
         }
       }
-      //减小音量
+      //減小音量
       if (event.keyCode === 40) {
         if (musicVolume >= 0) {
           musicVolume += -0.1;
@@ -946,7 +932,7 @@ const anzhiyu = {
       }
     });
   },
-  // 切换歌单
+  // 切換歌單
   changeMusicList: async function () {
     const anMusicPage = document.getElementById("anMusic-page");
     const metingAplayer = anMusicPage.querySelector("meting-js").aplayer;
@@ -957,13 +943,13 @@ const anzhiyu = {
     if (changeMusicListFlag) {
       songs = defaultPlayMusicList;
     } else {
-      // 保存当前默认播放列表，以使下次可以切换回来
+      // 儲存當前預設播放列表，以使下次可以切換回來
       defaultPlayMusicList = metingAplayer.list.audios;
-      // 如果缓存的数据没有过期，直接使用
+      // 如果快取的資料沒有過期，直接使用
       if (currentTime - cacheData.timestamp < 24 * 60 * 60 * 1000) {
         songs = cacheData.songs;
       } else {
-        // 否则重新从服务器获取数据
+        // 否則重新從伺服器獲取資料
         const response = await fetch("/json/music.json");
         songs = await response.json();
         cacheData.timestamp = currentTime;
@@ -972,14 +958,14 @@ const anzhiyu = {
       }
     }
 
-    // 清除当前播放列表并添加新的歌曲
+    // 清除當前播放列表並新增新的歌曲
     metingAplayer.list.clear();
     metingAplayer.list.add(songs);
 
-    // 切换标志位
+    // 切換標誌位
     changeMusicListFlag = !changeMusicListFlag;
   },
-  // 控制台音乐列表监听
+  // 控制檯音樂列表監聽
   addEventListenerConsoleMusicList: function () {
     const navMusic = document.getElementById("nav-music");
     if (!navMusic) return;
@@ -993,7 +979,7 @@ const anzhiyu = {
       }
     });
   },
-  // 监听按键
+  // 監聽按鍵
   toPage: function () {
     var toPageText = document.getElementById("toPageText"),
       toPageButton = document.getElementById("toPageButton"),
@@ -1009,25 +995,25 @@ const anzhiyu = {
     }
   },
 
-  //删除多余的class
+  //刪除多餘的class
   removeBodyPaceClass: function () {
     document.body.className = "pace-done";
   },
-  // 修改body的type类型以适配css
+  // 修改body的type型別以適配css
   setValueToBodyType: function () {
-    const input = document.getElementById("page-type"); // 获取input元素
-    const value = input.value; // 获取input的value值
-    document.body.dataset.type = value; // 将value值赋值到body的type属性上
+    const input = document.getElementById("page-type"); // 獲取input元素
+    const value = input.value; // 獲取input的value值
+    document.body.dataset.type = value; // 將value值賦值到body的type屬性上
   },
-  //匿名评论
+  //匿名留言
   addRandomCommentInfo: function () {
-    // 从形容词数组中随机取一个值
+    // 從形容詞陣列中隨機取一個值
     const randomAdjective = adjectives[Math.floor(Math.random() * adjectives.length)];
 
-    // 从蔬菜水果动物名字数组中随机取一个值
+    // 從蔬菜水果動物名字陣列中隨機取一個值
     const randomName = vegetablesAndFruits[Math.floor(Math.random() * vegetablesAndFruits.length)];
 
-    // 将两个值组合成一个字符串
+    // 將兩個值組合成一個字串
     const name = `${randomAdjective}${randomName}`;
 
     function dr_js_autofill_commentinfos() {
@@ -1089,28 +1075,20 @@ const anzhiyu = {
     input.setSelectionRange(-1, -1);
   },
 
-  // 跳转开往
+  // 跳轉開往
   totraveling: function () {
-    anzhiyu.snackbarShow(
-      "即将跳转到「开往」项目的成员博客，不保证跳转网站的安全性和可用性",
-      element => {
-        element.style.opacity = 0;
-        travellingsTimer && clearTimeout(travellingsTimer);
-      },
-      5000,
-      "取消"
-    );
-    travellingsTimer = setTimeout(function () {
+    anzhiyu.snackbarShow("即將跳轉到「開往」專案的成員部落格，不保證跳轉網站的安全性和可用性", !1, 5000);
+    setTimeout(function () {
       window.open("https://www.travellings.cn/go.html");
     }, "5000");
   },
 
-  // 工具函数替换字符串
+  // 工具函式替換字串
   replaceAll: function (e, n, t) {
     return e.split(n).join(t);
   },
 
-  // 音乐绑定事件
+  // 音樂繫結事件
   musicBindEvent: function () {
     document.querySelector("#nav-music .aplayer-music").addEventListener("click", function () {
       anzhiyu.musicTelescopic();
@@ -1120,7 +1098,7 @@ const anzhiyu = {
     });
   },
 
-  // 判断是否是移动端
+  // 判斷是否是移動端
   hasMobile: function () {
     let isMobile = false;
     if (
@@ -1129,13 +1107,13 @@ const anzhiyu = {
       ) ||
       document.body.clientWidth < 800
     ) {
-      // 移动端
+      // 移動端
       isMobile = true;
     }
     return isMobile;
   },
 
-  // 创建二维码
+  // 建立二維碼
   qrcodeCreate: function () {
     if (document.getElementById("qrcode")) {
       document.getElementById("qrcode").innerHTML = "";
@@ -1150,7 +1128,7 @@ const anzhiyu = {
     }
   },
 
-  // 判断是否在el内
+  // 判斷是否在el內
   isInViewPortOfOne: function (el) {
     if (!el) return;
     const viewPortHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
@@ -1159,14 +1137,14 @@ const anzhiyu = {
     const top = offsetTop - scrollTop;
     return top <= viewPortHeight;
   },
-  //添加赞赏蒙版
+  //新增贊助蒙版
   addRewardMask: function () {
     if (!document.querySelector(".reward-main")) return;
     document.querySelector(".reward-main").style.display = "flex";
     document.querySelector(".reward-main").style.zIndex = "102";
     document.getElementById("quit-box").style.display = "flex";
   },
-  // 移除赞赏蒙版
+  // 移除贊助蒙版
   removeRewardMask: function () {
     if (!document.querySelector(".reward-main")) return;
     document.querySelector(".reward-main").style.display = "none";
@@ -1195,32 +1173,7 @@ const anzhiyu = {
       window.oncontextmenu = oncontextmenuFunction;
     }
   },
-  switchConsole: () => {
-    // switch console
-    const consoleEl = document.getElementById("console");
-    //初始化隐藏边栏
-    const $htmlDom = document.documentElement.classList;
-    $htmlDom.contains("hide-aside")
-      ? document.querySelector("#consoleHideAside").classList.add("on")
-      : document.querySelector("#consoleHideAside").classList.remove("on");
-    if (consoleEl.classList.contains("show")) {
-      consoleEl.classList.remove("show");
-    } else {
-      consoleEl.classList.add("show");
-    }
-    const consoleKeyboard = document.querySelector("#consoleKeyboard");
-
-    if (consoleKeyboard) {
-      if (localStorage.getItem("keyboardToggle") === "true") {
-        consoleKeyboard.classList.add("on");
-        anzhiyu_keyboard = true;
-      } else {
-        consoleKeyboard.classList.remove("on");
-        anzhiyu_keyboard = false;
-      }
-    }
-  },
-  // 定义 intersectionObserver 函数，并接收两个可选参数
+  // 定義 intersectionObserver 函式，並接收兩個可選引數
   intersectionObserver: function (enterCallback, leaveCallback) {
     let observer;
     return () => {
@@ -1235,32 +1188,32 @@ const anzhiyu = {
           });
         });
       } else {
-        // 如果 observer 对象已经存在，则先取消对之前元素的观察
+        // 如果 observer 物件已經存在，則先取消對之前元素的觀察
         observer.disconnect();
       }
       return observer;
     };
   },
-  // CategoryBar滚动
+  // CategoryBar滾動
   scrollCategoryBarToRight: function () {
-    // 获取需要操作的元素
+    // 獲取需要操作的元素
     const items = document.getElementById("catalog-list");
     const nextButton = document.getElementById("category-bar-next");
 
-    // 检查元素是否存在
+    // 檢查元素是否存在
     if (items && nextButton) {
       const itemsWidth = items.clientWidth;
 
-      // 判断是否已经滚动到最右侧
+      // 判斷是否已經滾動到最右側
       if (items.scrollLeft + items.clientWidth + 1 >= items.scrollWidth) {
-        // 滚动到初始位置并更新按钮内容
+        // 滾動到初始位置並更新按鈕內容
         items.scroll({
           left: 0,
           behavior: "smooth",
         });
         nextButton.innerHTML = '<i class="anzhiyufont anzhiyu-icon-angle-double-right"></i>';
       } else {
-        // 滚动到下一个视图
+        // 滾動到下一個檢視
         items.scrollBy({
           left: itemsWidth,
           behavior: "smooth",
@@ -1270,14 +1223,14 @@ const anzhiyu = {
       console.error("Element(s) not found: 'catalog-list' and/or 'category-bar-next'.");
     }
   },
-  // 分类条
+  // 分類條
   categoriesBarActive: function () {
     const urlinfo = decodeURIComponent(window.location.pathname);
     const $categoryBar = document.getElementById("category-bar");
     if (!$categoryBar) return;
 
     if (urlinfo === "/") {
-      $categoryBar.querySelector("#首页").classList.add("select");
+      $categoryBar.querySelector("#首頁").classList.add("select");
     } else {
       const pattern = /\/categories\/.*?\//;
       const patbool = pattern.test(urlinfo);
@@ -1306,20 +1259,5 @@ const anzhiyu = {
     } else {
       menuCommentBarrageDom.style.display = "none";
     }
-  },
-  // 切换作者卡片状态文字
-  changeSayHelloText: function () {
-    console.info(GLOBAL_CONFIG);
-    const greetings = GLOBAL_CONFIG.authorStatus.skills;
-
-    const authorInfoSayHiElement = document.getElementById("author-info__sayhi");
-
-    let lastSayHello = authorInfoSayHiElement.textContent;
-
-    let randomGreeting = lastSayHello;
-    while (randomGreeting === lastSayHello) {
-      randomGreeting = greetings[Math.floor(Math.random() * greetings.length)];
-    }
-    authorInfoSayHiElement.textContent = randomGreeting;
   },
 };

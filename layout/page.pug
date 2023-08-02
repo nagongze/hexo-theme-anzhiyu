@@ -2,8 +2,9 @@ extends includes/layout.pug
 
 block content
   #page
-    if top_img === false && !page.top_single
+    if top_img === false
       h1.page-title= page.title
+
     case page.type
       when 'tags'
         include includes/page/tags.pug
@@ -27,6 +28,10 @@ block content
         include includes/page/music.pug
       when 'equipment'
         include includes/page/equipment.pug
+      when 'stars'
+        include includes/page/stars.pug
+      when 'mmdcollect'
+        include includes/page/mmdcollect.pug
       default
         include includes/page/default-page.pug
 

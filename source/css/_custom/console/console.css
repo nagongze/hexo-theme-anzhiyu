@@ -6,15 +6,13 @@
   height: 100vh;
   top: 0;
   left: 0;
+  z-index: 9999;
   justify-content: center;
   opacity: 0;
   transition: 0.3s ease-out;
   flex-direction: column;
   align-items: center;
   pointer-events: none;
-  margin: 0 !important;
-  font-size: var(--global-font-size);
-  z-index: 2;
 }
 #console-music-bg {
   display: none;
@@ -24,10 +22,6 @@
 #console.reward-show {
   opacity: 1;
   pointer-events: all;
-}
-
-#console.reward-show .console-card-group {
-  pointer-events: none;
 }
 
 #console .console-card-group {
@@ -87,7 +81,6 @@
   position: absolute;
   z-index: -1;
   transition: 0.3s;
-  margin: 0px !important;
 }
 
 #console.show .console-mask,
@@ -95,37 +88,6 @@
   backdrop-filter: saturate(180%) blur(20px);
   -webkit-backdrop-filter: blur(20px);
   transform: translateZ(0);
-}
-
-#card-newest-comments .aside-list-item .thumbnail img {
-  width: 20px;
-  height: 20px;
-  margin-right: 8px;
-  border-radius: 20px;
-}
-
-#card-newest-comments .aside-list-item {
-  background: var(--anzhiyu-card-bg);
-  border-radius: 12px;
-  border: var(--style-border);
-  padding: 12px 16px;
-  width: 49%;
-  display: flex;
-  flex-direction: column;
-  height: 150px;
-  transition: 0.3s;
-}
-
-#card-newest-comments .aside-list-item:not(:last-child) {
-  margin-bottom: 0.5rem;
-}
-
-#card-newest-comments .aside-list-item .name {
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
-  width: 130px;
-  font-weight: bold;
 }
 
 #console .author-content-item-tips {
@@ -154,8 +116,38 @@
 }
 
 #card-newest-comments .aside-list-item:hover {
-  background: var(--anzhiyu-main);
-  color: var(--anzhiyu-white);
+  background: var(--anzhiyu-card-bg) !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+#card-newest-comments .aside-list-item .thumbnail {
+  display: none;
+}
+
+#card-newest-comments .aside-list-item:not(:last-child) {
+  margin-bottom: 0.8rem;
+  border-bottom: 1px solid var(--anzhiyu-theme-op) !important;
+}
+
+#card-newest-comments .aside-list-item {
+  background: var(--anzhiyu-card-bg);
+  line-height: 2;
+  border-radius: 0px !important;
+  transition: 0.3s;
+}
+
+#card-newest-comments .aside-list-item .name {
+  font-size: 85%;
+  color: var(--anzhiyu-secondtext) !important;
+  overflow: hidden;
+  white-space: nowrap;
+  text-align: right;
+  font-weight: bold;
+}
+
+#console #card-newest-comments {
+  height: 100%;
 }
 
 #console .aside-list-item .content .comment {
@@ -165,12 +157,12 @@
   -webkit-box-orient: vertical;
   line-height: 24px;
   font-size: 14px;
-  border-radius: 0px;
 }
 
-#console .aside-list-item:hover .thumbnail,
-#console .aside-list-item:hover .content .comment {
-  color: var(--anzhiyu-white);
+#card-newest-comments .aside-list-item:hover .thumbnail,
+#card-newest-comments .aside-list-item:hover .content .comment,
+#card-newest-comments .aside-list-item:hover .content .name {
+  color: var(--anzhiyu-main) !important;
 }
 
 #console .aside-list-item .content time {
@@ -249,6 +241,23 @@
   opacity: 0.6;
 }
 
+#console .close-btn {
+  width: 35px;
+  height: 35px;
+  position: fixed;
+  right: 35px;
+  top: 35px;
+  font-size: 35px;
+  color: var(--anzhiyu-fontcolor);
+  cursor: pointer;
+  transition: 0.3s;
+  display: flex;
+}
+
+#console .close-btn:hover {
+  color: var(--anzhiyu-main);
+}
+
 #console .console-card.history {
   margin-top: 8px;
   padding: 0;
@@ -287,10 +296,6 @@
 #console .console-card.history .card-archive-list .card-archive-list-link:hover {
   background: var(--anzhiyu-main);
   color: var(--anzhiyu-white);
-}
-
-#console #card-newest-comments {
-  height: 100%;
 }
 
 #console .button-group i {
@@ -556,7 +561,7 @@ body:has(#console.show) #nav-music .aplayer .aplayer-lrc .aplayer-lrc-contents {
   }
   body:has(#console.show) .aplayer-list {
     position: fixed;
-    display: none;
+    z-index: 1002;
     width: 100%;
     bottom: -76%;
     left: 0;
@@ -754,6 +759,7 @@ body:has(#console.show) #nav-music .aplayer .aplayer-lrc .aplayer-lrc-contents {
     .aplayer-controller
     .aplayer-time
     .aplayer-icon.aplayer-icon-menu,
+  body:has(#console.show) .aplayer-volume-wrap,
   body:has(#console.show) .aplayer.aplayer-mobile .aplayer-icon-volume-down {
     display: inline-block;
     opacity: 1;
@@ -903,7 +909,7 @@ body:has(#console.show) #nav-music .aplayer .aplayer-lrc .aplayer-lrc-contents {
 }
 
 @media screen and (max-width: 867px) {
-  #center-console:checked + label {
+  #console .close-btn {
     display: none;
   }
   #console .console-card-group {

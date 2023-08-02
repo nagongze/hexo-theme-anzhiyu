@@ -14,7 +14,7 @@ script(data-pjax="true").
     };
     var commentInterval = null;
     var hoverOnCommentBarrage = false;
-    
+
     document.querySelector(".comment-barrage").addEventListener("mouseenter", function() {
       hoverOnCommentBarrage = true;
     });
@@ -94,7 +94,7 @@ script(data-pjax="true").
             <a class="barrageTitle ${
               data.mailMd5 === commentBarrageConfig.mailMd5 ? "barrageBloggerTitle" : ""
             }" href="javascript:anzhiyu.scrollTo('#post-comment')"">
-              ${data.mailMd5 === commentBarrageConfig.mailMd5 ? "博主" : "热评"}
+              ${data.mailMd5 === commentBarrageConfig.mailMd5 ? "雫雫" : "熱門留言"}
             </a>
             <div class="barrageNick">${data.nick}</div>
             <img class="nolazyload barrageAvatar" src="https://cravatar.cn/avatar/${data.mailMd5}"/>
@@ -125,7 +125,7 @@ script(data-pjax="true").
 
         entries.forEach(entry => {
           if (postComment && commentBarrage && document.body.clientWidth > 768) {
-            commentBarrage.style.bottom = entry.isIntersecting ? `-${commentBarrageConfig.maxBarrage * 200}px` : "0";
+            commentBarrage.style.bottom = entry.isIntersecting ? "-200px" : "0";
           }
         });
       };
@@ -145,10 +145,10 @@ script(data-pjax="true").
 
       if (localStorage.getItem("commentBarrageSwitch") !== "false") {
         document.querySelector(".comment-barrage").style.display = "flex";
-        document.querySelector(".menu-commentBarrage-text").textContent = "关闭热评";
+        document.querySelector(".menu-commentBarrage-text").textContent = "關閉熱門留言";
       } else {
         document.querySelector(".comment-barrage").style.display = "none";
-        document.querySelector(".menu-commentBarrage-text").textContent = "显示热评";
+        document.querySelector(".menu-commentBarrage-text").textContent = "顯示熱門留言";
       }
 
       document.addEventListener("pjax:send", function () {

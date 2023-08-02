@@ -1,21 +1,11 @@
-algolia_search:
+algolia_search_v4:
   name: algoliasearch
   file: dist/algoliasearch-lite.umd.js
-  version: 4.16.0
+  version: 4.14.2
 instantsearch_v4:
   name: instantsearch.js
   file: dist/instantsearch.production.min.js
   version: 4.46.1
-docsearch_js:
-  name: '@docsearch/js'
-  other_name: docsearch-js
-  file: dist/umd/index.js
-  version: 3.5.1
-docsearch_css:
-  name: '@docsearch/css'
-  other_name: docsearch-css
-  file: dist/style.css
-  version: 3.5.1
 pjax:
   name: pjax
   file: pjax.min.js
@@ -31,17 +21,17 @@ valine:
 twikoo:
   name: twikoo
   file: dist/twikoo.all.min.js
-  version: 1.6.17
+  version: 1.6.16
 waline_js:
   name: "@waline/client"
   file: dist/waline.js
   other_name: waline
-  version: 2.14.9
+  version: 2.15.5
 waline_css:
   name: "@waline/client"
   file: dist/waline.css
   other_name: waline
-  version: 2.14.9
+  version: 2.15.5
 sharejs:
   name: butterfly-extsrc
   file: sharejs/dist/js/social-share.min.js
@@ -103,24 +93,24 @@ lazyload:
 instantpage:
   name: instant.page
   file: instantpage.js
-  version: 5.2.0
+  version: 5.1.1
 typed:
   name: typed.js
-  file: dist/typed.umd.js
-  version: 2.0.15
+  file: lib/typed.min.js
+  version: 2.0.12
 pangu:
   name: pangu
   file: dist/browser/pangu.min.js
-  version: 5.0.14
-fancybox_css:
+  version: 4.0.7
+fancybox_css_v4:
   name: "@fancyapps/ui"
-  file: dist/fancybox/fancybox.css
-  version: 5.0.14
+  file: dist/fancybox.css
+  version: 4.0.31
   other_name: fancyapps-ui
-fancybox:
+fancybox_v4:
   name: "@fancyapps/ui"
-  file: dist/fancybox/fancybox.umd.js
-  version: 5.0.14
+  file: dist/fancybox.umd.js
+  version: 4.0.31
   other_name: fancyapps-ui
 medium_zoom:
   name: medium-zoom
@@ -138,7 +128,7 @@ fontawesome:
   name: "@fortawesome/fontawesome-free"
   file: css/all.min.css
   other_name: font-awesome
-  version: 6.4.0
+  version: 6.3.0
 flickr_justified_gallery_js:
   name: flickr-justified-gallery
   file: dist/fjGallery.min.js
@@ -177,11 +167,11 @@ prismjs_autoloader:
 artalk_js:
   name: artalk
   file: dist/Artalk.js
-  version: 2.5.5
+  version: 2.3.4
 artalk_css:
   name: artalk
   file: dist/Artalk.css
-  version: 2.5.5
+  version: 2.3.4
 pace_js:
   name: pace-js
   other_name: pace
@@ -218,7 +208,7 @@ waterfall:
 ali_iconfont_css:
   name: anzhiyu-theme-static
   file: icon/ali_iconfont_css.css
-  version: 1.1.9
+  version: 1.1.4
 accesskey_js:
   name: anzhiyu-theme-static
   file: accesskey/accesskey.js

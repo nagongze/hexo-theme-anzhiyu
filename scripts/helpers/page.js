@@ -22,10 +22,10 @@ hexo.extend.helper.register("page_description", function () {
 
 hexo.extend.helper.register("get_page_fill_description", function () {
   const { config, page } = this;
-  let description = page.content || page.description || page.title || config.description;
+  let description = page.description || page.content || page.title || config.description;
 
   if (description) {
-    // 使用正则表达式匹配 h1-h6 标签中的文本内容
+    // 使用正則表示式匹配 h1-h6 標籤中的文字內容
     const regex = /<h[1-6][^>]*>(.*?)<\/h[1-6]>/g;
     const headings = [];
     let match;
@@ -34,13 +34,13 @@ hexo.extend.helper.register("get_page_fill_description", function () {
     }
 
     const contents = headings.map(heading => {
-      // 去掉 a 标签及其内容
+      // 去掉 a 標籤及其內容
       const text = heading.replace(/<a[^>]*>.*?<\/a>/g, "");
       // 去除特殊符号 &,:,; 等
       return text.replace(/<\/?[^>]+>|&|:|;|quot;|，|,|“|”|"|'|#/g, "");
     });
 
-    // 排除 div.post-ai-description 元素中的内容
+    // 排除 div.post-ai-description 元素中的內容
     const excludedDivRegex = /<div[^>]*class="?post-ai-description"?.*?>[\s\S]*?<\/div>/gi;
     description = description.replace(excludedDivRegex, "");
 

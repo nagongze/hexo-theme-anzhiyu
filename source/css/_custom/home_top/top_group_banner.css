@@ -137,10 +137,6 @@
   margin-left: 0.5rem;
   margin-right: 0px;
   margin-bottom: 0.5rem;
-  cursor: pointer;
-}
-.topGroup .recent-post-item:hover .recent-post-info .article-title {
-  color: var(--anzhiyu-main);
 }
 .topGroup .recent-post-item .post_cover {
   width: 100%;
@@ -188,6 +184,10 @@
   font-weight: bold;
   font-size: 1rem !important;
   padding: 0 !important;
+}
+
+.topGroup .recent-post-item .recent-post-info .article-title:hover {
+  color: var(--anzhiyu-lighttext);
 }
 
 .topGroup .recent-post-item:hover .recent-post-top-text {

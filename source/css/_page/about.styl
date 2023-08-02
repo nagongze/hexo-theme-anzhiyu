@@ -716,15 +716,14 @@ body[data-type="about"] #web_bg {
   margin-right: -0.25rem;
 }
 
-.reward-list-item
+.reward-list-item {
   padding: 1rem;
   border-radius: 12px;
   border: var(--style-border-always);
-  width: calc((100% / 5) - 0.5rem);
+  width: calc((100% / 3) - 0.5rem);
   margin: 0 0.25rem 0.5rem 0.25rem;
   box-shadow: var(--anzhiyu-shadow-border);
-  +maxWidth1200()
-    width: calc((100% / 3) - 0.5rem);
+}
 
 .reward-list-item .reward-list-item-name {
   font-size: 1rem;
@@ -1084,3 +1083,6 @@ else
     .author-content-item.selfInfo
       height 100%
       width: 49%;
+    .author-content-item.like-music
+      height 100%
+      width: 100%;

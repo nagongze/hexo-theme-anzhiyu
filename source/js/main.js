@@ -1,9 +1,9 @@
-// 第一次播放音乐
+// 第一次播放音樂
 var anzhiyu_musicFirst = false;
-// 快捷键
-var anzhiyu_keyboard = null;
-// 音乐播放状态
+// 音樂播放狀態
 var anzhiyu_musicPlaying = false;
+// 是否開啟快捷鍵
+var anzhiyu_keyboard = localStorage.getItem("keyboardToggle") ? localStorage.getItem("keyboardToggle") : false;
 var $web_container = document.getElementById("web_container");
 var $web_box = document.getElementById("web_box");
 var $bodyWrap = document.getElementById("body-wrap");
@@ -11,97 +11,97 @@ var $main = document.querySelector("main");
 var dragStartX;
 
 var adjectives = [
-  "美丽的",
+  "美麗的",
   "英俊的",
-  "聪明的",
+  "聰明的",
   "勇敢的",
-  "可爱的",
+  "可愛的",
   "慷慨的",
   "善良的",
   "可靠的",
-  "开朗的",
+  "開朗的",
   "成熟的",
-  "稳重的",
-  "真诚的",
+  "穩重的",
+  "真誠的",
   "幽默的",
-  "豁达的",
+  "豁達的",
   "有趣的",
-  "活泼的",
-  "优雅的",
+  "活潑的",
+  "優雅的",
   "敏捷的",
-  "温柔的",
-  "温暖的",
-  "敬业的",
-  "细心的",
+  "溫柔的",
+  "溫暖的",
+  "敬業的",
+  "細心的",
   "耐心的",
   "深沉的",
-  "朴素的",
+  "樸素的",
   "含蓄的",
   "率直的",
-  "开放的",
-  "务实的",
-  "坚强的",
+  "開放的",
+  "務實的",
+  "堅強的",
   "自信的",
-  "谦虚的",
-  "文静的",
+  "謙虛的",
+  "文靜的",
   "深刻的",
-  "纯真的",
-  "朝气蓬勃的",
+  "純真的",
+  "朝氣蓬勃的",
   "慎重的",
   "大方的",
-  "顽强的",
+  "頑強的",
   "迷人的",
-  "机智的",
+  "機智的",
   "善解人意的",
   "富有想象力的",
   "有魅力的",
-  "独立的",
+  "獨立的",
   "好奇的",
-  "干净的",
-  "宽容的",
+  "乾淨的",
+  "寬容的",
   "尊重他人的",
-  "体贴的",
+  "體貼的",
   "守信的",
   "有耐性的",
-  "有责任心的",
-  "有担当的",
-  "有远见的",
+  "有責任心的",
+  "有擔當的",
+  "有遠見的",
   "有智慧的",
   "有眼光的",
-  "有冒险精神的",
-  "有爱心的",
+  "有冒險精神的",
+  "有愛心的",
   "有同情心的",
-  "喜欢思考的",
-  "喜欢学习的",
-  "具有批判性思维的",
-  "善于表达的",
-  "善于沟通的",
-  "善于合作的",
-  "善于领导的",
+  "喜歡思考的",
+  "喜歡學習的",
+  "具有批判性思維的",
+  "善於表達的",
+  "善於溝通的",
+  "善於合作的",
+  "善於領導的",
   "有激情的",
   "有幽默感的",
   "有思想的",
-  "有个性的",
-  "有正义感的",
-  "有责任感的",
-  "有创造力的",
+  "有個性的",
+  "有正義感的",
+  "有責任感的",
+  "有創造力的",
   "有想象力的",
-  "有艺术细胞的",
-  "有团队精神的",
-  "有协调能力的",
-  "有决策能力的",
-  "有组织能力的",
-  "有学习能力的",
-  "有执行能力的",
+  "有藝術細胞的",
+  "有團隊精神的",
+  "有協調能力的",
+  "有決策能力的",
+  "有組織能力的",
+  "有學習能力的",
+  "有執行能力的",
   "有分析能力的",
-  "有逻辑思维的",
-  "有创新能力的",
-  "有专业素养的",
-  "有商业头脑的",
+  "有邏輯思維的",
+  "有創新能力的",
+  "有專業素養的",
+  "有商業頭腦的",
 ];
 
 var vegetablesAndFruits = [
-  "萝卜",
+  "蘿蔔",
   "白菜",
   "芹菜",
   "生菜",
@@ -109,38 +109,38 @@ var vegetablesAndFruits = [
   "辣椒",
   "茄子",
   "豆角",
-  "黄瓜",
-  "西红柿",
-  "洋葱",
+  "黃瓜",
+  "番茄",
+  "洋蔥",
   "大蒜",
-  "土豆",
+  "馬鈴薯",
   "南瓜",
   "豆腐",
   "韭菜",
   "花菜",
-  "西兰花",
+  "花椰菜",
   "蘑菇",
-  "金针菇",
-  "苹果",
+  "金針菇",
+  "蘋果",
   "香蕉",
-  "橙子",
-  "柠檬",
-  "猕猴桃",
+  "柳橙",
+  "檸檬",
+  "奇異果",
   "草莓",
   "葡萄",
-  "桃子",
+  "水蜜桃",
   "杏子",
   "李子",
-  "石榴",
+  "芭樂",
   "西瓜",
   "哈密瓜",
   "蜜瓜",
-  "樱桃",
-  "蓝莓",
+  "櫻桃",
+  "藍莓",
   "柿子",
-  "橄榄",
+  "橄欖",
   "柚子",
-  "火龙果",
+  "火龍果",
 ];
 document.addEventListener("DOMContentLoaded", function () {
   function onDragStart(event) {
@@ -463,7 +463,7 @@ document.addEventListener("DOMContentLoaded", function () {
   };
 
   /**
-   * justified-gallery 圖庫排版
+   * justified-gallery 相簿排版
    */
   const runJustifiedGallery = function (ele) {
     const htmlStr = arr => {
@@ -505,12 +505,12 @@ document.addEventListener("DOMContentLoaded", function () {
     const runJustifiedGallery = (item, arr) => {
       const limit = item.getAttribute("data-limit") ?? arr.length;
       if (!item.classList.contains("lazyload") || arr.length < limit) {
-        // 不懒加载
+        // 不懶載入
         item.innerHTML = htmlStr(arr);
-        item.nextElementSibling.style.display = "none";
+        item.nextElementSibling.style.display = "none"
       } else {
         if (!item.classList.contains("btn_album_detail_lazyload") || item.classList.contains("page_img_lazyload")) {
-          // 滚动懒加载
+          // 滾動懶載入
           lazyloadFn(item, arr, limit);
           const clickBtnFn = () => {
             const lastItemLength = lazyloadFn(item, arr, limit);
@@ -525,19 +525,19 @@ document.addEventListener("DOMContentLoaded", function () {
             }
           };
 
-          // 创建IntersectionObserver实例
+          // 建立IntersectionObserver例項
           const observer = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
-              // 如果元素进入视口
+              // 如果元素進入視口
               if (entry.isIntersecting) {
-                // 执行clickBtnFn函数
+                // 執行clickBtnFn函式
                 setTimeout(clickBtnFn(), 100);
               }
             });
           });
           observer.observe(item.nextElementSibling);
         } else {
-          // 相册详情 按钮懒加载
+          // 相簿詳情 按鈕懶載入
           lazyloadFn(item, arr, limit);
           const clickBtnFn = () => {
             const lastItemLength = lazyloadFn(item, arr, limit);
@@ -578,7 +578,7 @@ document.addEventListener("DOMContentLoaded", function () {
   };
 
   /**
-   * 滚动处理
+   * 滾動處理
    */
   const scrollFn = function () {
     const $rightside = document.getElementById("rightside");
@@ -602,20 +602,20 @@ document.addEventListener("DOMContentLoaded", function () {
     const isChatBtnHide = typeof chatBtnHide === "function";
     const isChatBtnShow = typeof chatBtnShow === "function";
 
-    // 第一次滑动到底部的标识符
+    // 第一次滑動到底部的識別符號
     let scrollBottomFirstFlag = false;
-    // 缓存常用dom元素
+    // 快取常用dom元素
     const musicDom = document.getElementById("nav-music"),
       footerDom = document.getElementById("footer"),
       waterfallDom = document.getElementById("waterfall"),
       $percentBtn = document.getElementById("percent"),
       $navTotop = document.getElementById("nav-totop"),
       $bodyWrap = document.getElementById("body-wrap");
-    // 页面底部Dom是否存在
+    // 頁面底部Dom是否存在
     let pageBottomDomFlag = document.getElementById("post-comment") || document.getElementById("footer");
 
     function percentageScrollFn(currentTop) {
-      // 处理滚动百分比
+      // 處理滾動百分比
       let docHeight = $bodyWrap.clientHeight;
       const winHeight = document.documentElement.clientHeight;
       const contentMath =
@@ -641,15 +641,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
       if (isInViewPortOfOneNoDis(pageBottomDomFlag) || percentage > 90) {
         $navTotop.classList.add("long");
-        $percentBtn.textContent = "返回顶部";
+        $percentBtn.textContent = "返回頂部";
       } else {
         $navTotop.classList.remove("long");
         $percentBtn.textContent = percentage;
       }
 
-      // 如果当前页面需要瀑布流，就处理瀑布流
+      // 如果當前頁面需要瀑布流，就處理瀑布流
       if (waterfallDom) {
-        const waterfallResult = currentTop % document.documentElement.clientHeight; // 卷去一个视口
+        const waterfallResult = currentTop % document.documentElement.clientHeight; // 捲去一個視口
         if (!scrollBottomFirstFlag && waterfallResult + 100 >= document.documentElement.clientHeight) {
           console.info(waterfallResult, document.documentElement.clientHeight);
           setTimeout(() => {
@@ -699,7 +699,7 @@ document.addEventListener("DOMContentLoaded", function () {
           requestAnimationFrame(() => {
             $header.classList.remove("nav-fixed");
             $header.classList.remove("nav-visible");
-            // 修改顶栏颜色
+            // 修改頂欄顏色
             anzhiyu.initThemeColor();
           });
         }
@@ -709,11 +709,11 @@ document.addEventListener("DOMContentLoaded", function () {
       if (document.body.scrollHeight <= innerHeight) {
         $rightside.style.cssText = "opacity: 0.8; transform: translateX(-58px)";
       }
-
+      
       percentageScrollFn(currentTop);
     }, 96);
 
-    // 进入footer隐藏音乐
+    // 進入footer隱藏音樂
     if (footerDom) {
       anzhiyu
         .intersectionObserver(
@@ -768,7 +768,7 @@ document.addEventListener("DOMContentLoaded", function () {
         },
       };
 
-      // toc元素點擊
+      // toc元素點選
       $cardToc.addEventListener("click", e => {
         e.preventDefault();
         const target = e.target.classList;
@@ -876,7 +876,7 @@ document.addEventListener("DOMContentLoaded", function () {
       newEle.addEventListener("click", clickFn);
     },
     showOrHideBtn: e => {
-      // rightside 點擊設置 按鈕 展開
+      // rightside 點選設定 按鈕 展開
       const rightsideHideClassList = document.getElementById("rightside-config-hide").classList;
       rightsideHideClassList.toggle("show");
       if (e.classList.contains("show")) {
@@ -898,6 +898,30 @@ document.addEventListener("DOMContentLoaded", function () {
         ? saveToLocal.set("aside-status", "show", 2)
         : saveToLocal.set("aside-status", "hide", 2);
       $htmlDom.toggle("hide-aside");
+    },
+    switchConsole: () => {
+      // switch console
+      const consoleEl = document.getElementById("console");
+      //初始化隱藏邊欄
+      const $htmlDom = document.documentElement.classList;
+      $htmlDom.contains("hide-aside")
+        ? document.querySelector("#consoleHideAside").classList.add("on")
+        : document.querySelector("#consoleHideAside").classList.remove("on");
+      if (consoleEl.classList.contains("show")) {
+        consoleEl.classList.remove("show");
+      } else {
+        consoleEl.classList.add("show");
+      }
+      const consoleKeyboard = document.querySelector("#consoleKeyboard");
+      if (consoleKeyboard) {
+        if (localStorage.getItem("keyboardToggle") === "true") {
+          consoleKeyboard.classList.add("on");
+          anzhiyu_keyboard = true;
+        } else {
+          consoleKeyboard.classList.remove("on");
+          anzhiyu_keyboard = false;
+        }
+      }
     },
 
     runMobileToc: () => {
@@ -928,12 +952,15 @@ document.addEventListener("DOMContentLoaded", function () {
       case "hide-aside-btn":
         rightSideFn.hideAsideBtn();
         break;
+      case "center-console":
+        rightSideFn.switchConsole();
+        break;
       default:
         break;
     }
   });
 
-  //监听蒙版关闭
+  //監聽蒙版關閉
   document.addEventListener(
     "touchstart",
     e => {
@@ -955,7 +982,7 @@ document.addEventListener("DOMContentLoaded", function () {
   };
 
   /**
-   * 複製時加上版權信息
+   * 複製時加上版權資訊
    */
   const addCopyright = () => {
     const copyright = GLOBAL_CONFIG.copyright;
@@ -989,7 +1016,7 @@ document.addEventListener("DOMContentLoaded", function () {
   };
 
   /**
-   * 網頁運行時間
+   * 網頁執行時間
    */
   const addRuntime = () => {
     const $runtimeCount = document.getElementById("runtimeshow");
@@ -1120,7 +1147,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (diffDay >= data.limitDay) {
       const ele = document.createElement("div");
       ele.className = "post-outdate-notice";
-      ele.textContent = data.messagePrev + " " + diffDay + " " + data.messageNext;
+      ele.innerHTML = `${data.messagePrev} <strong style="color: #f66;">${diffDay}</strong> ${data.messageNext}`;
       const $targetEle = document.getElementById("article-container");
       if (data.position === "top") {
         $targetEle.insertBefore(ele, $targetEle.firstChild);
@@ -1138,15 +1165,11 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   };
 
-  const relativeDate = function (selector, simple = false) {
+  const relativeDate = function (selector) {
     selector.forEach(item => {
       const $this = item;
       const timeVal = $this.getAttribute("datetime");
-      if (simple) {
-        $this.innerText = anzhiyu.diffDate(timeVal, false, simple);
-      } else {
-        $this.innerText = anzhiyu.diffDate(timeVal, true);
-      }
+      $this.innerText = anzhiyu.diffDate(timeVal, true);
       $this.style.display = "inline";
     });
   };
@@ -1154,7 +1177,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const mouseleaveHomeCard = function () {
     const topGroup = document.querySelector(".topGroup");
     if (!topGroup) return;
-    //首页大卡片恢复显示
+    //首頁大卡片恢復顯示
     topGroup.addEventListener("mouseleave", function () {
       document.getElementById("todayCard").classList.remove("hide");
       document.getElementById("todayCard").style.zIndex = 1;
@@ -1163,22 +1186,22 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // 表情放大
   const owoBig = function () {
-    let flag = 1, // 设置节流阀
-      owo_time = "", // 设置计时器
-      m = 3; // 设置放大倍数
-    // 创建盒子
+    let flag = 1, // 設定節流閥
+      owo_time = "", // 設定計時器
+      m = 3; // 設定放大倍數
+    // 建立盒子
     let div = document.createElement("div");
-    // 设置ID
+    // 設定ID
     div.id = "owo-big";
     // 插入盒子
     let body = document.querySelector("body");
     body.appendChild(div);
 
-    // 监听 post-comment 元素的子元素添加事件
+    // 監聽 post-comment 元素的子元素新增事件
     const observer = new MutationObserver(mutations => {
       mutations.forEach(mutation => {
         const addedNodes = mutation.addedNodes;
-        // 判断新增的节点中是否包含 OwO-body 类名的元素
+        // 判斷新增的節點中是否包含 OwO-body 類名的元素
         for (let i = 0; i < addedNodes.length; i++) {
           const node = addedNodes[i];
           if (
@@ -1187,194 +1210,117 @@ document.addEventListener("DOMContentLoaded", function () {
             !node.classList.contains("comment-barrage")
           ) {
             const owo_body = node;
-            // 禁用右键（手机端长按会出现右键菜单，为了体验给禁用掉）
+            // 禁用右鍵（手機端長按會出現右鍵選單，為了體驗給禁用掉）
             owo_body.addEventListener("contextmenu", e => e.preventDefault());
-            // 鼠标移入
+            // 滑鼠移入
             owo_body.addEventListener("mouseover", handleMouseOver);
-            // 鼠标移出
+            // 滑鼠移出
             owo_body.addEventListener("mouseout", handleMouseOut);
           }
         }
       });
     });
 
-    // 配置 MutationObserver 选项
+    // 配置 MutationObserver 選項
     const config = { childList: true, subtree: true };
 
-    // 开始监听
+    // 開始監聽
     observer.observe(document.getElementById("post-comment"), config);
 
     function handleMouseOver(e) {
       if (e.target.tagName == "IMG" && flag) {
         flag = 0;
-        // 移入100毫秒后显示盒子
+        // 移入100毫秒後顯示盒子
         owo_time = setTimeout(() => {
           let height = e.target.clientHeight * m; // 盒子高
-          let width = e.target.clientWidth * m; // 盒子宽
-          let left = e.x - e.offsetX - (width - e.target.clientWidth) / 2; // 盒子与屏幕左边距离
+          let width = e.target.clientWidth * m; // 盒子寬
+          let left = e.x - e.offsetX - (width - e.target.clientWidth) / 2; // 盒子與螢幕左邊距離
           if (left + width > body.clientWidth) {
             left -= left + width - body.clientWidth + 10;
-          } // 右边缘检测，防止超出屏幕
-          if (left < 0) left = 10; // 左边缘检测，防止超出屏幕
-          let top = e.y - e.offsetY; // 盒子与屏幕顶部距离
+          } // 右邊緣檢測，防止超出螢幕
+          if (left < 0) left = 10; // 左邊緣檢測，防止超出螢幕
+          let top = e.y - e.offsetY; // 盒子與螢幕頂部距離
 
-          // 设置盒子样式
+          // 設定盒子樣式
           div.style.height = height + "px";
           div.style.width = width + "px";
           div.style.left = left + "px";
           div.style.top = top + "px";
           div.style.display = "flex";
-          // 在盒子中插入图片
+          // 在盒子中插入圖片
           div.innerHTML = `<img src="${e.target.src}">`;
         }, 100);
       }
     }
 
     function handleMouseOut(e) {
-      // 隐藏盒子
+      // 隱藏盒子
       div.style.display = "none";
       flag = 1;
       clearTimeout(owo_time);
     }
   };
 
-  //封面纯色
-  const coverColor = async () => {
+  //封面純色
+  const coverColor = () => {
     const root = document.querySelector(":root");
     const path = document.getElementById("post-top-bg")?.src;
+
     if (!path) {
-      // 非文章情况，直接设置不需要请求了
       root.style.setProperty("--anzhiyu-bar-background", "var(--anzhiyu-meta-theme-color)");
       anzhiyu.initThemeColor();
 
-      // 要改回来默认主色
-      document.documentElement.style.setProperty(
-        "--anzhiyu-main",
-        getComputedStyle(document.documentElement).getPropertyValue("--anzhiyu-theme")
-      );
-      document.documentElement.style.setProperty(
-        "--anzhiyu-theme-op",
-        getComputedStyle(document.documentElement).getPropertyValue("--anzhiyu-main") + "23"
-      );
-      document.documentElement.style.setProperty(
-        "--anzhiyu-theme-op-deep",
-        getComputedStyle(document.documentElement).getPropertyValue("--anzhiyu-main") + "dd"
-      );
+      if (GLOBAL_CONFIG.changeMainColorPost) {
+        document.documentElement.style.setProperty(
+          "--anzhiyu-main",
+          getComputedStyle(document.documentElement).getPropertyValue("--anzhiyu-theme")
+        );
+      }
 
       return;
     }
 
-    // 文章内
-    if (GLOBAL_CONFIG.mainTone) {
-      if (GLOBAL_CONFIG_SITE.postMainColor) {
-        let value = GLOBAL_CONFIG_SITE.postMainColor
-        if (getContrastYIQ(value) === "light") {
-          value = LightenDarkenColor(colorHex(value), -40);
-        }
+    if (!GLOBAL_CONFIG.changeMainColorPost) {
+      root.style.setProperty("--anzhiyu-bar-background", "var(--anzhiyu-theme)");
+      anzhiyu.initThemeColor();
+      return
+    }
+    const httpRequest = new XMLHttpRequest();
+    httpRequest.open("GET", `${path}?imageAve`, true);
+    httpRequest.send();
 
-        root.style.setProperty("--anzhiyu-bar-background", value);
-        anzhiyu.initThemeColor();
+    httpRequest.onreadystatechange = () => {
+      const isRequestCompleted = httpRequest.readyState === 4;
+      const isSuccess = isRequestCompleted && httpRequest.status === 200;
 
-        if (GLOBAL_CONFIG.mainTone.cover_change) {
-          document.documentElement.style.setProperty("--anzhiyu-main", value);
-          document.documentElement.style.setProperty(
-            "--anzhiyu-theme-op",
-            getComputedStyle(document.documentElement).getPropertyValue("--anzhiyu-main") + "23"
-          );
-          document.documentElement.style.setProperty(
-            "--anzhiyu-theme-op-deep",
-            getComputedStyle(document.documentElement).getPropertyValue("--anzhiyu-main") + "dd"
-          );
-        }
-      } else {
-        const fallbackValue = "var(--anzhiyu-theme)";
-        let fetchPath = "";
-        if (GLOBAL_CONFIG.mainTone.mode == "cdn" || GLOBAL_CONFIG.mainTone.mode == "both") {
-          fetchPath = path + "?imageAve";
-        } else if (GLOBAL_CONFIG.mainTone.mode == "api") {
-          fetchPath = GLOBAL_CONFIG.mainTone.api + path;
-        }
-        // cdn/api模式请求
+      let value;
+
+      if (isSuccess) {
         try {
-          const response = await fetch(fetchPath);
-          if (response.ok && response.headers.get("content-type")?.includes("application/json")) {
-            const obj = await response.json();
-            let value =
-              GLOBAL_CONFIG.mainTone.mode == "cdn" || GLOBAL_CONFIG.mainTone.mode == "both"
-                ? "#" + obj.RGB.slice(2)
-                : obj.RGB;
-            if (getContrastYIQ(value) === "light") {
-              value = LightenDarkenColor(colorHex(value), -40);
-            }
+          const obj = JSON.parse(httpRequest.responseText);
+          value = "#" + obj.RGB.slice(2);
 
-            root.style.setProperty("--anzhiyu-bar-background", value);
-            anzhiyu.initThemeColor();
-
-            if (GLOBAL_CONFIG.mainTone.cover_change) {
-              document.documentElement.style.setProperty("--anzhiyu-main", value);
-              document.documentElement.style.setProperty(
-                "--anzhiyu-theme-op",
-                getComputedStyle(document.documentElement).getPropertyValue("--anzhiyu-main") + "23"
-              );
-              document.documentElement.style.setProperty(
-                "--anzhiyu-theme-op-deep",
-                getComputedStyle(document.documentElement).getPropertyValue("--anzhiyu-main") + "dd"
-              );
-            }
-          } else {
-            if (GLOBAL_CONFIG.mainTone.mode == "both") {
-              // both继续请求
-              try {
-                const response = await fetch(GLOBAL_CONFIG.mainTone.api + path);
-                if (response.ok && response.headers.get("content-type")?.includes("application/json")) {
-                  const obj = await response.json();
-                  let value = obj.RGB;
-
-                  if (getContrastYIQ(value) === "light") {
-                    value = LightenDarkenColor(colorHex(value), -40);
-                  }
-
-                  root.style.setProperty("--anzhiyu-bar-background", value);
-                  anzhiyu.initThemeColor();
-
-                  if (GLOBAL_CONFIG.mainTone.cover_change) {
-                    document.documentElement.style.setProperty("--anzhiyu-main", value);
-                    document.documentElement.style.setProperty(
-                      "--anzhiyu-theme-op",
-                      getComputedStyle(document.documentElement).getPropertyValue("--anzhiyu-main") + "23"
-                    );
-                    document.documentElement.style.setProperty(
-                      "--anzhiyu-theme-op-deep",
-                      getComputedStyle(document.documentElement).getPropertyValue("--anzhiyu-main") + "dd"
-                    );
-                  }
-                } else {
-                  root.style.setProperty("--anzhiyu-bar-background", fallbackValue);
-                  anzhiyu.initThemeColor();
-                  document.documentElement.style.setProperty("--anzhiyu-main", fallbackValue);
-                }
-              } catch {
-                root.style.setProperty("--anzhiyu-bar-background", fallbackValue);
-                anzhiyu.initThemeColor();
-                document.documentElement.style.setProperty("--anzhiyu-main", fallbackValue);
-              }
-            } else {
-              root.style.setProperty("--anzhiyu-bar-background", fallbackValue);
-              anzhiyu.initThemeColor();
-              document.documentElement.style.setProperty("--anzhiyu-main", fallbackValue);
-            }
+          if (getContrastYIQ(value) === "light") {
+            value = LightenDarkenColor(colorHex(value), -40);
           }
         } catch (err) {
-          console.error("Error fetching data:", err);
-          root.style.setProperty("--anzhiyu-bar-background", fallbackValue);
-          anzhiyu.initThemeColor();
-          document.documentElement.style.setProperty("--anzhiyu-main", fallbackValue);
+          value = "var(--anzhiyu-theme)";
+        }
+      } else if (isRequestCompleted) {
+        value = "var(--anzhiyu-theme)";
+      }
+
+      if (value) {
+        root.style.setProperty("--anzhiyu-bar-background", value);
+        anzhiyu.initThemeColor();
+        if (GLOBAL_CONFIG.changeMainColorPost) {
+          document.documentElement.style.setProperty("--anzhiyu-main", value);
         }
       }
-    }
+    };
   };
 
-  //RGB颜色转化为16进制颜色
+  //RGB顏色轉化為16進位制顏色
   const colorHex = str => {
     const hexRegex = /^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$/;
 
@@ -1396,7 +1342,7 @@ document.addEventListener("DOMContentLoaded", function () {
     return str;
   };
 
-  //16进制颜色转化为RGB颜色
+  //16進位制顏色轉化為RGB顏色
   const colorRgb = str => {
     const hexRegex = /^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$/;
     let sColor = str.toLowerCase();
@@ -1456,13 +1402,13 @@ document.addEventListener("DOMContentLoaded", function () {
     return brightness >= 0.5 ? "light" : "dark";
   };
 
-  //监听跳转页面输入框是否按下回车
+  //監聽跳轉頁面輸入框是否按下回車
   const listenToPageInputPress = function () {
     var input = document.getElementById("toPageText");
     if (input) {
       input.addEventListener("keydown", event => {
         if (event.keyCode === 13) {
-          // 如果按下的是回车键，则执行特定的函数
+          // 如果按下的是回車鍵，則執行特定的函式
           anzhiyu.toPage();
           var link = document.getElementById("toPageButton");
           var href = link.href;
@@ -1472,17 +1418,17 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   };
 
-  // 监听nav是否被其他音频暂停⏸️
+  // 監聽nav是否被其他音訊暫停⏸️
   const listenNavMusicPause = function () {
     const timer = setInterval(() => {
       if (navMusicEl.querySelector("#nav-music meting-js").aplayer) {
         clearInterval(timer);
-        let msgPlay = '<i class="anzhiyufont anzhiyu-icon-play"></i><span>播放音乐</span>';
-        let msgPause = '<i class="anzhiyufont anzhiyu-icon-pause"></i><span>暂停音乐</span>';
+        let msgPlay = '<i class="anzhiyufont anzhiyu-icon-play"></i><span>播放音樂</span>';
+        let msgPause = '<i class="anzhiyufont anzhiyu-icon-pause"></i><span>暫停音樂</span>';
         navMusicEl.querySelector("#nav-music meting-js").aplayer.on("pause", function () {
           navMusicEl.classList.remove("playing");
           document.getElementById("menu-music-toggle").innerHTML = msgPlay;
-          document.getElementById("nav-music-hoverTips").innerHTML = "音乐已暂停";
+          document.getElementById("nav-music-hoverTips").innerHTML = "音樂已暫停";
           document.querySelector("#consoleMusic").classList.remove("on");
           anzhiyu_musicPlaying = false;
           navMusicEl.classList.remove("stretch");
@@ -1498,9 +1444,9 @@ document.addEventListener("DOMContentLoaded", function () {
     }, 16);
   };
 
-  // 开发者工具键盘监听
+  // 開發者工具鍵盤監聽
   window.onkeydown = function (e) {
-    123 === e.keyCode && anzhiyu.snackbarShow("开发者模式已打开，请遵循GPL协议", !1);
+    123 === e.keyCode && anzhiyu.snackbarShow("開發者模式已開啟，請遵循GPL協議", !1);
   };
 
   const unRefreshFn = function () {
@@ -1508,6 +1454,7 @@ document.addEventListener("DOMContentLoaded", function () {
       adjustMenu(false);
       anzhiyu.isHidden(document.getElementById("toggle-menu")) && mobileSidebarOpen && sidebarFn.close();
     });
+
 
     anzhiyu.darkModeStatus();
 
@@ -1517,11 +1464,6 @@ document.addEventListener("DOMContentLoaded", function () {
     GLOBAL_CONFIG.islazyload && lazyloadImg();
     GLOBAL_CONFIG.copyright !== undefined && addCopyright();
     GLOBAL_CONFIG.navMusic && listenNavMusicPause();
-    if (GLOBAL_CONFIG.shortcutKey && document.getElementById("consoleKeyboard")) {
-      localStorage.setItem("keyboardToggle", "true");
-      document.getElementById("consoleKeyboard").classList.add("on");
-      anzhiyu_keyboard = true;
-    }
     clickFnOfSubMenu();
   };
 
@@ -1532,11 +1474,7 @@ document.addEventListener("DOMContentLoaded", function () {
       GLOBAL_CONFIG.noticeOutdate !== undefined && addPostOutdateNotice();
       GLOBAL_CONFIG.relativeDate.post && relativeDate(document.querySelectorAll("#post-meta time"));
     } else {
-      if (GLOBAL_CONFIG.relativeDate.homepage) {
-        relativeDate(document.querySelectorAll("#recent-posts time"));
-      } else if (GLOBAL_CONFIG.relativeDate.simplehomepage) {
-        relativeDate(document.querySelectorAll("#recent-posts time"), true);
-      }
+      GLOBAL_CONFIG.relativeDate.homepage && relativeDate(document.querySelectorAll("#recent-posts time"));
       GLOBAL_CONFIG.runtime && addRuntime();
       addLastPushDate();
       toggleCardCategory();
@@ -1564,7 +1502,7 @@ document.addEventListener("DOMContentLoaded", function () {
       sidebarFn.open();
     });
 
-    // 如果当前页有评论就执行函数
+    // 如果當前頁有留言就執行函式
     if (document.getElementById("post-comment")) owoBig();
 
     mouseleaveHomeCard();

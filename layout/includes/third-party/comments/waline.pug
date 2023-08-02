@@ -10,6 +10,23 @@ script.
         pageview: !{lazyload ? false : pageview},
         dark: 'html[data-theme="dark"]',
         path: window.location.pathname,
+        imageUploader: (file) => {
+            let headers = new Headers()
+            let formdata = new FormData()
+            formdata.append('image', file)
+            headers.append('Authorization', 'Client-ID ' + '!{theme.waline.option.ImgurID}')
+            return fetch('https://api.imgur.com/3/image', {
+              method: 'POST',
+              headers: headers,
+              async: true,
+              crossDomain: true,
+              processData: false,
+              contentType: false,
+              body: formdata
+            })
+              .then((resp) => resp.json())
+              .then((resp) => resp.data.link)
+          },
         comment: !{lazyload ? false : count},
       }, !{JSON.stringify(option)}))
     }

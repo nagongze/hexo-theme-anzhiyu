@@ -50,10 +50,20 @@ body[data-type="album_detail"] #page .page-title {
   width: 100%;
   line-height: 1.38;
   border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  text-align: justify;
+}
+#album_detail .album-content .datadesc {
+  font-size: 0.6rem;
+  color: var(--anzhiyu-secondtext);
+  width: 100%;
+  border-radius: 12px;
   margin-bottom: 0.5rem;
   display: flex;
   flex-direction: column;
   text-align: justify;
+  white-space: pre-wrap;
 }
 #album_detail p {
   margin: 0px;
@@ -172,6 +182,10 @@ body[data-type="album_detail"] #page .page-title {
   width: 5%;
 }
 
+#album_detail .album-bottom .album-reply:hover {
+  color: var(--anzhiyu-main);
+}
+
 #album_detail .timeline ul li.album-item:hover {
   border: var(--style-border-hover);
 }
@@ -181,8 +195,8 @@ body[data-type="album_detail"] #page .page-title {
   margin-left: 0.5rem;
   font-size: 0.7rem;
   align-items: center;
-  background-color: rgba(245, 108, 108, 0.13);
-  color: rgb(245, 108, 108);
+  background-color: rgba(108, 110, 245, 0.13);
+  color: rgb(108, 163, 245);
   padding: 0px 8px;
   border-radius: 20px;
 }
@@ -190,6 +204,25 @@ body[data-type="album_detail"] #page .page-title {
   margin-right: 3px;
 }
 #album_detail .album-content-link:hover {
+  background-color: var(--anzhiyu-main);
+  color: var(--anzhiyu-white);
+}
+#album_detail .album-content-video {
+  display: flex;
+  margin-left: 0.5rem;
+  font-size: 0.7rem;
+  align-items: center;
+  background-color: rgba(245, 108, 108, 0.13);
+  color: rgb(245, 108, 108);
+  padding: 0px 8px;
+  border-radius: 20px;
+  height: 80%;
+}
+#album_detail .album-content-video i {
+  margin-right: 3px;
+  font-size: 1.1rem;
+}
+#album_detail .album-content-video:hover {
   background-color: var(--anzhiyu-main);
   color: var(--anzhiyu-white);
 }

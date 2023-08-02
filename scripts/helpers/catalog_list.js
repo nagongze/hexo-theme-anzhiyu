@@ -5,6 +5,7 @@ hexo.extend.helper.register("catalog_list", function (type) {
     <div class="catalog-list-item" id="/${item.path}">
       <a href="/${item.path}">
         ${item.name}
+        <span class="notification-tip">${item.length}</span></a>
       </a>
     </div>
     `;

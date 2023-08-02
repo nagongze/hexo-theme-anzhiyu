@@ -13,7 +13,7 @@ if home_top_config.enable
 
           a#random-hover(href='javascript:toRandomPost()')
             i.anzhiyufont.anzhiyu-icon-paper-plane(style='margin-left:10px')
-            div(style='margin-left:10px') 随便逛逛
+            div(style='margin-left:10px') 隨便逛逛
               i.anzhiyufont.anzhiyu-icon-arrow-right(style='margin-left:10px')
         .categoryGroup
           each item in home_top_config.category
@@ -48,7 +48,7 @@ if home_top_config.enable
               each item in swiper_list
                 .blog-slider__item.swiper-slide(style='width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;')
                   a.blog-slider__img(href=item.path, title=item.title)
-                    img(width='48' height='48'  src=item.cover alt='图片' onerror=`this.src=` + error_img + `; this.onerror = null;`)
+                    img(width='48' height='48'  src=item.cover alt='圖片' onerror=`this.src=` + error_img + `; this.onerror = null;`)
                   .blog-slider__content
                     if (timemode === 'updated' )
                       span.blog-slider__code= item.updated.format('YYYY-MM-DD')
@@ -56,8 +56,8 @@ if home_top_config.enable
                       span.blog-slider__code= item.date.format('YYYY-MM-DD')
                     a.blog-slider__title(href=item.path, alt=item.title)= item.title
                     .blog-slider__text= item.description ? item.description : default_descr
-                    a.blog-slider__button(href=item.path, alt=item.title) 详情   
-            //- 轮播图组件
+                    a.blog-slider__button(href=item.path, alt=item.title) 詳情   
+            //- 輪播圖元件
             .blog-slider__pagination.swiper-pagination-clickable.swiper-pagination-bullets
 
           #topPostGroup
@@ -66,7 +66,7 @@ if home_top_config.enable
               .top-group-list-item
                 .post_cover.left_radius
                   a(href=item.path title=item.title)
-                    span.top-group-text 荐
+                    span.top-group-text 薦
                     img.post_bg(alt=item.title, src=item.cover, onerror=`this.src=` + error_img + `; this.onerror = null;`)
                 .top-group-info
                   a.article-title(href=item.path title=item.title)=item.title
@@ -82,22 +82,22 @@ if home_top_config.enable
           - let top_group_banner_link = url_for(theme.home_top.banner.link)
 
           each item, index in top_group_list.slice(0, 6)
-            .recent-post-item(onclick=`pjax.loadUrl("${url_for(item.path)}")`)
+            .recent-post-item
               .post_cover.left_radius
                 a(href=item.path, title=item.title)
-                  span.recent-post-top-text 荐
-                  img.post_bg(onerror=`this.onerror=null;this.src='${url_for(theme.error_img.post_page)}'`, alt='',  src=item.cover)
+                  span.recent-post-top-text 薦
+                  img.post_bg(onerror=item.cover, alt='',  src=item.cover)
               .recent-post-info
                 a.article-title(href=item.path, title=item.title)=item.title
           a#todayCard.todayCard(href=top_group_banner_link, style='z-index: 1;')
             .todayCard-info
               .todayCard-tips=top_group_banner_tips
               .todayCard-title=top_group_banner_title
-            img.todayCard-cover(src=url_for(top_group_banner_image) onerror=`this.onerror=null;this.src='${url_for(theme.error_img.post_page)}'` alt='封面')
+            .todayCard-cover(style=`background: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.15)), url(${top_group_banner_image}) no-repeat center /cover`)
             .banner-button-group
               .banner-button(onclick='event.stopPropagation();event.preventDefault();anzhiyu.hideTodayCard();')
                 i.anzhiyufont.anzhiyu-icon-arrow-circle-right
-                span.banner-button-text 更多推荐
+                span.banner-button-text 推薦文章
         
         link(rel="stylesheet", href=theme.home_top.banner.top_group_banner_css)
       
@@ -133,5 +133,6 @@ if home_top_config.enable
           swiper.autoplay.start();
         };
       }
-
-  link(rel="stylesheet" href=url_for(theme.home_top.swiper.categorygroup_css))
+  if !site.data.essay
+    link(rel="stylesheet" href=theme.home_top.swiper.swiper_css onload="this.media='all'")
+  link(rel="stylesheet" href=theme.home_top.swiper.categorygroup_css onload="this.media='all'")

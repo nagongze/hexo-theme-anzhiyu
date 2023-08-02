@@ -1,0 +1,55 @@
+if site.data.stars && theme.stars.enable
+  #stars_page
+    .author-content.author-content-item.starsPage.single(style = theme.stars.enable ? `background: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)), url(${theme.stars.top_background}) center calc(50% + 3%) / cover no-repeat;` : "")
+      .card-content
+        .author-content-item-tips 工具收藏
+        span.author-content-item-title 各種工具推薦頁
+        .content-bottom
+          .tips 有想添加的工具都可以按「加入資料」留言讓我加入喔！
+        .banner-button-group
+          a.banner-button(onclick="anzhiyu.addStarsLink()")
+            i.anzhiyufont.anzhiyu-icon-arrow-circle-right(style='font-size: 1.5rem')
+            span.banner-button-text 加入資料
+    .stars
+        if site.data.stars
+            each i in site.data.stars
+                if i.class_name
+                    h2!= i.class_name + "(" + i.stars_list.length + ")"
+                if i.class_desc
+                    .stars-desc!=i.class_desc
+                if i.stars_style === 'anzhiyu'
+                    .anzhiyu-stars-list
+                        if i.stars_list
+                        each item in i.stars_list
+                            .stars-list-item
+                                a.stars-link(href=url_for(item.link) title=item.name target="_blank")
+                                    .stars-item-icon
+                                        if theme.lazyload.enable
+                                            img.stars-avatar(data-lazy-src=url_for(item.avatar) onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.stars) + `'` alt=item.name )
+                                        else
+                                            img.stars-avatar(src=url_for(item.avatar) onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.stars) + `'` alt=item.name )
+                                    .stars-item-info
+                                        if i.lost_contact
+                                            .stars-item-name.stars-name-lost-contact= item.name
+                                            .stars-item-desc(title=item.descr)= item.descr
+                                        else 
+                                            .stars-item-name.stars-name= item.name
+                                            .stars-item-desc(title=item.descr)= item.descr
+                
+                else if i.stars_style === 'flexcard'
+                    .flexcard-stars-list
+                        each item in i.stars_list
+                            a.stars-list-card.stars-link(href=url_for(item.link) target='_blank' data-title=item.descr)
+                                .wrapper.cover
+                                    - var siteshot = item.siteshot ? url_for(item.siteshot) : 'https://image.thum.io/get/width/400/crop/800/allowJPG/wait/20/noanimate/' + item.link
+                                    if theme.lazyload.enable
+                                        img.cover.fadeIn(data-lazy-src=siteshot onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.post_page) + `'` alt='' )
+                                    else
+                                        img.cover.fadeIn(src=siteshot onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.post_page) + `'` alt='' )    
+                                .info
+                                    if theme.lazyload.enable
+                                        img.stars-avatar.stars-avatar(data-lazy-src=url_for(item.avatar) onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.stars) + `'` alt='' )
+                                    else
+                                        img.stars-avatar(src=url_for(item.avatar) onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.stars) + `'` alt='' )
+                                    span.stars-sitename.stars-name= item.name
+        != page.content

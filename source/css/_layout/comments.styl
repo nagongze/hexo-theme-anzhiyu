@@ -6,7 +6,6 @@
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-
     .comment-headline
       display: inline-block
       vertical-align: middle
@@ -15,7 +14,31 @@
     .comment-randomInfo
       margin-left: auto;
       font-size: 13px;
-
+      color: var(--anzhiyu-theme)
+    .comment-tips
+      display: none;
+      background-color: rgba(103, 194, 58, 0.13);
+      border: var(--style-border-always);
+      border-color: var(--anzhiyu-green);
+      color: var(--anzhiyu-green);
+      border-radius: 8px;
+      padding: 8px 12px;
+      margin-top: 0.5rem;
+      width: 100%;
+    .comment-tips.show
+      display: flex;
+    .comment-starstips
+      display: none;
+      background-color: rgba(103, 194, 58, 0.13);
+      border: var(--style-border-always);
+      border-color: var(--anzhiyu-green);
+      color: var(--anzhiyu-green);
+      border-radius: 8px;
+      padding: 8px 12px;
+      margin-top: 0.5rem;
+      width: 100%;
+    .comment-starstips.show
+      display: flex;
     #comment-switch
       display: inline-block
 

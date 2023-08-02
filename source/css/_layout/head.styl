@@ -11,11 +11,6 @@
     height: $index_top_img_height
     background-attachment: fixed
     border-radius: 0
-  if hexo-config('index_img')
-    +maxWidth768()
-      #center-console + label
-        i
-          background: var(--font-color)
 
     #site-info
       position: absolute
@@ -104,7 +99,7 @@
       margin-bottom: 0;
       user-select: none
       transform: rotate(10deg) translateY(-10%) scale(2);
-      if !hexo-config('mainTone.enable')
+      if !hexo-config('post_meta.post.mainTone')
         filter: blur(10px) brightness(60%);
         animation: none;
         transition: filter 0s
@@ -124,13 +119,9 @@
         transform: rotate(0deg) translateY(0) scale(1);
         filter: blur(0px);
         width: 100%;
-        if hexo-config('mainTone.enable')
-          position: fixed;
-          height: 30rem;
-        else
-          position: absolute;
-          height: 100vh;
-        z-index: 1;
+        height: 100vh;
+        position: fixed;
+        z-index: 2;
       &::after
         position: absolute;
         content: "";
@@ -149,10 +140,7 @@
         animation: slide-in 0.6s 0.3s backwards;
         +maxWidth768()
           min-height: 15rem !important;
-          if hexo-config('mainTone.enable')
-            height: 70% !important;
-          else
-            height: 100% !important;
+          height: 70% !important;
           opacity: 1 !important;
 
     #nav
@@ -173,7 +161,7 @@
         #nav
           background: var(--anzhiyu-card-bg);
           outline: 1px solid var(--anzhiyu-card-border);
-    if hexo-config('mainTone.enable')
+    if hexo-config('post_meta.post.mainTone')
       &:before    
         position: absolute
         width: 100%
@@ -201,7 +189,7 @@
     +maxWidth768()
       padding: 11rem 6% 0;
       align-items: center;
-      if hexo-config('mainTone.enable')
+      if hexo-config('post_meta.post.mainTone')
         &:after
           display: block
           position: absolute;
@@ -220,17 +208,9 @@
     background: 0
 
     #nav
-      #blog_name,
-      .mask-name-container,
-      #menus,
-      #nav-right .nav-button,
-      #nav-right #toggle-menu
-        a
-          color: var(--font-color)
-          text-shadow: none
-      #center-console + label
-        i
-          background: var(--font-color)
+      a
+        color: var(--font-color)
+        text-shadow: none
 
   &.nav-fixed
     #nav
@@ -240,19 +220,12 @@
       outline: 1px solid var(--anzhiyu-card-border);
       transform: translateZ(0);
       top: 0
+      
+      a,
       #toggle-menu
         color: var(--font-color)
         text-shadow: none
-        transition: background .3s ease-in-out,color 0s ease-in-out
-      #blog_name,
-      .mask-name-container,
-      #menus,
-      #nav-right .nav-button,
-      #nav-right #toggle-menu
-        a
-          color: var(--font-color)
-          text-shadow: none
-          transition: background .3s ease-in-out,color 0s ease-in-out
+        transition: background .3s ease-in-out,color 0s ease-in-out;
 
   &.nav-fixed
     #name-container
@@ -410,7 +383,7 @@
   z-index: 90
   display: flex
   align-items: center
-  padding 0 calc((100% - 1400px + 3rem) / 2)
+  padding: 0 calc((100% - 1370px) / 2);
   width: 100%
   height: 60px
   font-size: 1.3em
@@ -431,15 +404,12 @@
 
     &:hover
       color: var(--white)
-  #blog_name,
-  .mask-name-container,
-  #menus,
-  #nav-right .nav-button,
-  #nav-right #toggle-menu
-    a
-      color: var(--light-grey)
-      &:hover
-        color: var(--white)
+
+  a
+    color: var(--light-grey)
+
+    &:hover
+      color: var(--white)
 
   #site-name
     font-weight: bold
@@ -570,7 +540,7 @@
   transition: 0.6s
   background-color: transparent
   overflow: hidden
-  if hexo-config('mainTone.enable')
+  if hexo-config('post_meta.post.mainTone')
     background-color: var(--anzhiyu-bar-background)
 
   // #nav
@@ -699,7 +669,7 @@
       display: flex;
       margin-left: .4rem
       i 
-       display: none
+       margin-right: .2rem
 
       a.post-meta-categories
         color: var(--anzhiyu-white);
@@ -708,6 +678,10 @@
         height: 100%;
         font-weight: bold;
         display: flex;
+
+        &:hover
+          color: var(--anzhiyu-lighttext);
+
     .article-meta.tags
       margin-left: 1.2rem;
       +maxWidth768()
@@ -716,8 +690,12 @@
       color: var(--anzhiyu-white);
       opacity: 0.8;
       margin-right: 8px;
+    .article-meta__tags:hover
+      color: var(--anzhiyu-lighttext);
     .anzhiyu-icon-hashtag:before 
       font-size: 17px;
+    .anzhiyu-icon-hashtag:hover
+      color: var(--anzhiyu-lighttext);
     .anzhiyu-icon-location-dot
       margin-right: 4px
 #post
@@ -732,7 +710,7 @@
   .layout > div:first-child:not(.recent-posts)
     z-index: 10;
     margin-top: -30px;
-  if hexo-config('mainTone.enable')
+  if hexo-config('post_meta.post.mainTone')
     #page-header.post-bg #nav
       background: linear-gradient(to top, var(--anzhiyu-main-none) 0%, var(--anzhiyu-bar-background) 100%);
   .post-bg:has(.bldbanner) #post-info:after,

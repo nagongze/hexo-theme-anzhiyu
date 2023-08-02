@@ -11,6 +11,7 @@
   margin: 0 4px;
   line-height: 2;
   box-shadow: var(--anzhiyu-shadow-border);
+  background: var(--anzhiyu-theme) !important;
 }
 #article-container.post-content li::marker {
   content: none;
@@ -41,9 +42,12 @@
   position: absolute;
   top: 0px;
   left: 0px;
-  background: var(--anzhiyu-main);
+  background: var(--anzhiyu-theme);
   color: rgb(255, 255, 255);
   transition: all 0.3s ease-out 0s;
+}
+#article-container ol li::before {
+  background: var(--anzhiyu-lighttext);
 }
 #article-container ol > li::before {
   margin-top: 0.65em;
@@ -83,7 +87,7 @@
   border-top: none !important;
 }
 #article-container .tabs > .nav-tabs > .tab.active button {
-  border-bottom: 2px solid #3b70fc;
+  border-bottom: 2px solid var(--anzhiyu-theme);
   border-top: none !important;
 }
 .tab-item-content {
