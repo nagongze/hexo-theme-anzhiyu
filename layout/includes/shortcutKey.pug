@@ -1,9 +1,9 @@
 - shortcutKeyDelay = theme.shortcutKey.delay ? theme.shortcutKey.delay : 100
 - shortcutKeyShiftDelay = theme.shortcutKey.shiftDelay ? theme.shortcutKey.shiftDelay : 200
 #keyboard-tips(class='')
-  .keyboardTitle 博客快捷键
+  .keyboardTitle 部落格快捷鍵
   .keybordList
-    each item in ["K 关闭快捷键功能", "A 打开中控台", "M 播放/暂停音乐", "D 深色/浅色显示模式", "S 站内搜索", "R 随机访问", "H 返回首页", "F 友链鱼塘", "L 友链页面", "P 关于本站", "I 原版右键菜单"]
+    each item in ["K 關閉快捷鍵功能", "A 開啟中控臺", "M 播放/暫停音樂", "D 深色/淺色顯示模式", "S 站內搜尋", "R 隨機訪問", "H 返回首頁", "F 友鏈魚塘", "L 友鏈頁面", "P 關於本站", "I 原版右鍵選單"]
       - let key = item.split(" ")[0]
       - let content = item.split(" ")[1]
       .keybordItem
@@ -16,7 +16,7 @@ script.
   var anzhiyu_intype = false
   var anzhiyu_keyUpEvent_timeoutId = null
   var anzhiyu_keyUpShiftDelayEvent_timeoutId = null
-  // 是否开启快捷键
+  // 是否開啟快捷鍵
   anzhiyu_keyboard = localStorage.getItem("keyboardToggle") ? localStorage.getItem("keyboardToggle") : false;
   function addKeyShotListener() {
     const windowObject = window;

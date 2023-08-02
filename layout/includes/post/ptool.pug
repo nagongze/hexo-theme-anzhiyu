@@ -22,22 +22,26 @@ if !theme.disable_top_img && page.top_img !== false
         .reward-link.mode
           a.reward-link-button(href=theme.ptool.mode data-pjax-state='')
             i.anzhiyufont.anzhiyu-icon-plant-fill
-            | 运营模式与责任
+            | 網站規範
     div.shareRight
       if theme.ptool.share_mobile
         .share-link.mobile
           .share-qrcode
-            .share-button(title='使用手机访问这篇文章')
+            .share-button(title='使用手機檢視這篇文章')
               i.anzhiyufont.anzhiyu-icon-qrcode
             .share-main
               .share-main-all
                 #qrcode(title=url)
-                .reward-dec 使用手机访问这篇文章
+                .reward-dec 使用手機檢視這篇文章
       if theme.ptool.share_weibo
         .share-link.weibo
           a.share-button(target='_blank' href=`https://service.weibo.com/share/share.php?title=${site_title}&url=${url}&pic=${bg_img}` rel='external nofollow noreferrer noopener')
             i.anzhiyufont.anzhiyu-icon-weibo
       if theme.ptool.share_copyurl
         .share-link.copyurl
-          #post-share-url.share-button(title='复制链接' onclick='rm.copyPageUrl()')
+          #post-share-url.share-button(title='複製連結' onclick='rm.copyPageUrl()')
             i.anzhiyufont.anzhiyu-icon-link
+      if theme.ptool.share_page
+        .share-link.sharepage
+          #post-share-page.share-button(title='分享' onclick='sharePage()')
+            i.fas.fa-arrow-up-from-bracket

@@ -1,6 +1,7 @@
 div
   script(src=url_for(theme.asset.utils))
   script(src=url_for(theme.asset.main))
+  script(src="/js/sharepage.js")
 
   if theme.translate.enable
     script(src=url_for(theme.asset.translate))
@@ -30,14 +31,14 @@ div
     canvas(id="universe")
     script(async src="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.0/dark/dark.js")
 
-  //- 控制台打印信息
+  //- 控制檯列印資訊
   if theme.console.enable
     != partial("includes/anzhiyu/log-js.pug", {}, { cache: true })
   
-  //- 随机文章
+  //- 隨機文章
   script(async src="/anzhiyu/random.js")
 
-  //- 页脚计时器
+  //- 頁尾計時器
   if theme.footer.runtime.enable
     != partial("includes/third-party/runtime/runtime-js.pug", {}, { cache: true })
 
@@ -70,28 +71,28 @@ div
       != partial("includes/third-party/newest-comments/index", {}, { cache: true })
     else if (!is_post() && page.aside !== false)
       != partial("includes/third-party/newest-comments/index", {}, { cache: true })
-  //- 气泡效果
+  //- 氣泡效果
   if theme.bubble.enable
     script(async data-pjax src="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.1/bubble/bubble.js")
   if theme.visitorMail.enable
     - const mail = theme.visitorMail.mail
     script.
       var visitorMail = "#{mail}";
-  //- 标题卖萌
+  //- 標題賣萌
   if theme.diytitle.enable
     != partial("includes/anzhiyu/title-js.pug", {}, { cache: true })
-  //- 评论弹幕
+  //- 留言彈幕
   if theme.comment_barrage_config.enable && theme.comments.use == 'Twikoo'
     != partial("includes/anzhiyu/commentBarrage-js.pug", {}, { cache: true })
 
-  //- 即刻依赖waterfall
+  //- 即刻依賴waterfall
   script(async data-pjax src=url_for(theme.asset.waterfall))
-  //- 文章二维码
+  //- 文章二維碼
   script(src='https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/qrcodejs/1.0.0/qrcode.min.js')
-  //- 右键菜单
+  //- 右鍵選單
   != partial("includes/anzhiyu/rightmenu-js.pug", {}, { cache: true })
   include ./anzhiyu/anzhiyu-js.pug
-  //- 51la统计&灵雀统计
+  //- 51la統計&靈雀統計
   if (theme.LA.enable)
     - const ck = theme.LA.ck
     - const monitorID = theme.LA.LingQueMonitorID;
@@ -129,10 +130,10 @@ div
           new LingQue.Monitor().init({ id: "#{monitorID}", sendSuspicious: true });
         })
         .catch(error => {
-          console.error('本地无法加载51a统计，线上即可加载:', error);
+          console.error('本地無法載入51a統計，線上即可載入:', error);
         });
 
-  //- iconfont依赖
+  //- iconfont依賴
   link(rel="stylesheet" href=url_for(theme.asset.ali_iconfont_css))
   if (theme.icons && theme.icons.ali_iconfont_js)
     script(async src=url_for(theme.icons.ali_iconfont_js))
@@ -163,11 +164,11 @@ div
       (()=>{
         const greetingBoxInfo = !{JSON.stringify(theme.greetingBox.list)};
         const greetingBoxDefault = "#{theme.greetingBox.default}";
-        //- 创建盒子
+        //- 建立盒子
         let div = document.createElement("div");
-        //- 设置ID
+        //- 設定ID
         div.id = "greeting";
-        //- 设置class
+        //- 設定class
         setTimeout(()=>{
           div.classList.add("shown");
         }, 1000)

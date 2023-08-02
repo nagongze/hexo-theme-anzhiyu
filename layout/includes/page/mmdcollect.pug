@@ -1,0 +1,55 @@
+if site.data.mmdcollect && theme.mmdcollect.enable
+  #mmdcollect_page
+    .author-content.author-content-item.mmdcollectPage.single(style = theme.mmdcollect.enable ? `background: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)), url(${theme.mmdcollect.top_background}) center calc(50% + 3%) / cover no-repeat;` : "")
+      .card-content
+        .author-content-item-tips  MMD各項收藏
+        span.author-content-item-title 各種MMD素材相關推薦頁
+        .content-bottom
+          .tips 有想添加的工具都可以按「加入資料」留言讓我加入喔！
+        .banner-button-group
+          a.banner-button(onclick="anzhiyu.addCollectLink()")
+            i.anzhiyufont.anzhiyu-icon-arrow-circle-right(style='font-size: 1.5rem')
+            span.banner-button-text 加入資料
+    .mmdcollect
+        if site.data.mmdcollect
+            each i in site.data.mmdcollect
+                if i.class_name
+                    h2!= i.class_name + "(" + i.mmdcollect_list.length + ")"
+                if i.class_desc
+                    .mmdcollect-desc!=i.class_desc
+                if i.mmdcollect_style === 'anzhiyu'
+                    .anzhiyu-mmdcollect-list
+                        if i.mmdcollect_list
+                        each item in i.mmdcollect_list
+                            .mmdcollect-list-item
+                                a.mmdcollect-link(href=url_for(item.link) title=item.name target="_blank")
+                                    .mmdcollect-item-icon
+                                        if theme.lazyload.enable
+                                            img.mmdcollect-avatar(data-lazy-src=url_for(item.avatar) onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.mmdcollect) + `'` alt=item.name )
+                                        else
+                                            img.mmdcollect-avatar(src=url_for(item.avatar) onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.mmdcollect) + `'` alt=item.name )
+                                    .mmdcollect-item-info
+                                        if i.lost_contact
+                                            .mmdcollect-item-name.mmdcollect-name-lost-contact= item.name
+                                            .mmdcollect-item-desc(title=item.descr)= item.descr
+                                        else 
+                                            .mmdcollect-item-name.mmdcollect-name= item.name
+                                            .mmdcollect-item-desc(title=item.descr)= item.descr
+                
+                else if i.mmdcollect_style === 'flexcard'
+                    .flexcard-mmdcollect-list
+                        each item in i.mmdcollect_list
+                            a.mmdcollect-list-card.mmdcollect-link(href=url_for(item.link) target='_blank' data-title=item.descr)
+                                .wrapper.cover
+                                    - var siteshot = item.siteshot ? url_for(item.siteshot) : 'https://image.thum.io/get/width/400/crop/800/allowJPG/wait/20/noanimate/' + item.link
+                                    if theme.lazyload.enable
+                                        img.cover.fadeIn(data-lazy-src=siteshot onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.post_page) + `'` alt='' )
+                                    else
+                                        img.cover.fadeIn(src=siteshot onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.post_page) + `'` alt='' )    
+                                .info
+                                    if theme.lazyload.enable
+                                        img.mmdcollect-avatar.mmdcollect-avatar(data-lazy-src=url_for(item.avatar) onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.mmdcollect) + `'` alt='' )
+                                    else
+                                        img.mmdcollect-avatar(src=url_for(item.avatar) onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.mmdcollect) + `'` alt='' )
+                                    span.mmdcollect-sitename.mmdcollect-name= item.name
+        != page.content

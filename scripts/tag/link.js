@@ -10,7 +10,7 @@ function link(args) {
   link = link.trim();
   imgUrl = imgUrl.trim();
 
-  // 获取网页favicon
+  // 獲取網頁favicon
   if (!imgUrl) {
     let urlNoProtocol = link.replace(/^https?\:\/\//i, "");
     imgUrl = "https://api.iowen.cn/favicon/" + urlNoProtocol + ".png";
@@ -21,7 +21,7 @@ function link(args) {
   }
 
   return `<div calss='anzhiyu-tag-link'><a class="tag-Link" target="_blank" href="${urlFor(link)}">
-    <div class="tag-link-tips">${InsideStation ? "站内地址" : "引用站外地址"}</div>
+    <div class="tag-link-tips">${InsideStation ? "站內連結" : "引用站外連結"}</div>
     <div class="tag-link-bottom">
         <div class="tag-link-left" style="background-image: url(${InsideStation ? "/img/512.png" : imgUrl});"></div>
         <div class="tag-link-right">

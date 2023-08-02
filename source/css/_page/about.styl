@@ -9,6 +9,10 @@ body[data-type="about"] #page .page-title {
   display: none;
 }
 
+body[data-type="about"] #page p.small {
+  white-space: pre-wrap;
+}
+
 body[data-type="about"] .page #footer-wrap {
   opacity: 1;
   overflow: visible;
@@ -720,7 +724,7 @@ body[data-type="about"] #web_bg {
   padding: 1rem;
   border-radius: 12px;
   border: var(--style-border-always);
-  width: calc((100% / 5) - 0.5rem);
+  width: calc((100% / 3) - 0.5rem);
   margin: 0 0.25rem 0.5rem 0.25rem;
   box-shadow: var(--anzhiyu-shadow-border);
   +maxWidth1200()
@@ -731,6 +735,12 @@ body[data-type="about"] #web_bg {
   font-weight: 700;
   line-height: 1;
   margin-bottom: 0.5rem;
+}
+
+.reward-list-item .reward-list-item-comment {
+  font-size: small;
+  color: var(--anzhiyu-secondtext);
+  white-space: pre-wrap;
 }
 
 .reward-list-item .reward-list-bottom-group {
@@ -1084,3 +1094,6 @@ else
     .author-content-item.selfInfo
       height 100%
       width: 49%;
+    .author-content-item.like-music
+      height 100%
+      width: 100%;

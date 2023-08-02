@@ -54,6 +54,7 @@
     background-size: cover;
     z-index: -1;
     transition: 0.3s;
+    background: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.15))
   }
 
   .topGroup .banner-button-group {
