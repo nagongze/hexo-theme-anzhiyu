@@ -169,20 +169,20 @@
         
         flex-direction: row-reverse;
         justify-content: space-between;
-        position: absolute;
         
-        padding: 0 32px;
+        padding: 0 0 0 32px;
         width 100%
         align-items: center;
+
+        +maxWidth768()
+          line-height: 1.4;
         if hexo-config("post_meta.page.date_type") == 'both'
           white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis;
           display: inline-block
-          bottom: 15px;
         else 
           display: flex;
-          bottom: 30px;
         .sticky-warp
           position: absolute;
           top: -90px;
@@ -384,9 +384,11 @@ if hexo-config('article_double_row') == true
   overflow: hidden;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
-  line-height: 1.4;
+  line-height: 1.2;
   color: var(--anzhiyu-secondtext);
-  margin-top: 0.5rem;
   font-size: 14px;
   padding: 0 0 0 32px;
   white-space: break-all;
+
+  +maxWidth768()
+    margin-top: -10px;

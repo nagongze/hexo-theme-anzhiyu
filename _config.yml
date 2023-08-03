@@ -409,7 +409,7 @@ waline:
     meta: ["nick", "mail"]
     locale:
       profile: 個人資料
-      approved: 透過
+      approved: 通過
       waiting: 待審
       spam: 燒毀
       oldest: 按倒序
