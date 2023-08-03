@@ -1131,7 +1131,7 @@ const anzhiyu = {
       "取消"
     );
     travellingsTimer = setTimeout(function () {
-      window.open("https://www.travellings.cn/go.html");
+      window.open("https://www.travellings.cn/go.html","_blank");
     }, "5000");
   },
 
