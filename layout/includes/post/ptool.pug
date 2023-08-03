@@ -17,6 +17,7 @@ if !theme.disable_top_img && page.top_img !== false
   .post-tools-left
     div.rewardLeftButton
       if theme.reward.enable && theme.reward.QR_code
+        if (page.reward !== false || page.copyright_author && page.copyright_author !== config.author)
           !=partial('includes/post/reward', {}, {cache: true})
       if theme.ptool.mode
         .reward-link.mode

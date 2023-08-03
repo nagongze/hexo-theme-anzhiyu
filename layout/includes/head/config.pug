@@ -67,7 +67,7 @@
   }
 
   let noticeOutdate = 'undefined';
-  if (theme.noticeOutdate && theme.noticeOutdate.enable) {
+  if (theme.noticeOutdate && theme.noticeOutdate.enable && page.outdateNotice) {
     noticeOutdate = JSON.stringify({
       limitDay: theme.noticeOutdate.limit_day,
       position: theme.noticeOutdate.position,
