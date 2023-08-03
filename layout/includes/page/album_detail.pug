@@ -6,16 +6,16 @@
     - let album_detail_top_link = i.top_link
     - let album_detail_top_btn_text = i.top_btn_text
     if (path_name && i.album_list)
-      .author-content.author-content-item.album.single(style=`${album_detail_background ? `background: url(${album_detail_background}) top / cover no-repeat;` : ""}`)
+      .author-content.author-content-item.album.single(style=`${album_detail_background ? `background: url(${album_detail_background}) center / cover no-repeat;` : ""}`)
         .card-content
-          .author-content-item-tips 相册集
+          .author-content-item-tips 圖片庫
           span.author-content-item-title=i.class_name
           .content-bottom
             .tips=i.description
           .banner-button-group
-            a.banner-button(onclick=`pjax.loadUrl("${url_for(album_detail_top_link ? album_detail_top_link : '/about')}")`, data-pjax-state)
+            a.banner-button(target="_blank", title="跳轉到圖片庫主連結", href=album_detail_top_link, rel="external nofollow")
               i.anzhiyufont.anzhiyu-icon-arrow-circle-right(style='font-size: 1.5rem')
-              span.banner-button-text=album_detail_top_btn_text ? album_detail_top_btn_text : "关于我"
+              span.banner-button-text=album_detail_top_btn_text ? album_detail_top_btn_text : "關於我"
       section.timeline.page-1
         if type == 1
           ul#waterfall.list
@@ -42,9 +42,13 @@
                       i.anzhiyufont.anzhiyu-icon-instagram
                       time.datatime(datetime= item.date)= datedata
                     if item.link 
-                      a.album-content-link(target="_blank", title="跳转到短文指引的链接", href=item.link, rel="external nofollow")
+                      a.album-content-link(target="_blank", title="跳轉到圖片的連結", href=item.link, rel="external nofollow")
                         i.anzhiyufont.anzhiyu-icon-link
-                        | 链接
+                        | 連結
+                    if item.video 
+                      a.album-content-video(target="_blank", title="跳轉到圖片連結的影片", href=item.video, rel="external nofollow")
+                        i.fab.fa-youtube
+                        | 影片
                     if item.address
                       .album-info-address
                         i.anzhiyufont.anzhiyu-icon-location-dot

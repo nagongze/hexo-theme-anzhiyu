@@ -1,6 +1,6 @@
-if site.data.mmdcollect && theme.mmdcollect.enable
-  #mmdcollect_page
-    .author-content.author-content-item.mmdcollectPage.single(style = theme.mmdcollect.enable ? `background: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)), url(${theme.mmdcollect.top_background}) center calc(50% + 3%) / cover no-repeat;` : "")
+#mmdcollect_page
+    - let mmdcollect_background = page.top_background
+    .author-content.author-content-item.mmdcollectPage.single(style = mmdcollect_background ? `background: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)), url(${mmdcollect_background}) center calc(50% + 3%) / cover no-repeat;` : "")
       .card-content
         .author-content-item-tips  MMD各項收藏
         span.author-content-item-title 各種MMD素材相關推薦頁

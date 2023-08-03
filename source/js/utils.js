@@ -419,19 +419,19 @@ const anzhiyu = {
       ? document.querySelector("#consoleHideAside").classList.add("on")
       : document.querySelector("#consoleHideAside").classList.remove("on");
   },
-  // 熱評切換
+  // 熱門留言切換
   switchCommentBarrage: function () {
     let commentBarrage = document.querySelector(".comment-barrage");
     if (commentBarrage) {
       if (window.getComputedStyle(commentBarrage).display === "flex") {
         commentBarrage.style.display = "none";
         anzhiyu.snackbarShow("✨ 已關閉留言彈幕");
-        document.querySelector(".menu-commentBarrage-text").textContent = "顯示熱評";
+        document.querySelector(".menu-commentBarrage-text").textContent = "顯示熱門留言";
         document.querySelector("#consoleCommentBarrage").classList.remove("on");
         localStorage.setItem("commentBarrageSwitch", "false");
       } else {
         commentBarrage.style.display = "flex";
-        document.querySelector(".menu-commentBarrage-text").textContent = "關閉熱評";
+        document.querySelector(".menu-commentBarrage-text").textContent = "關閉熱門留言";
         document.querySelector("#consoleCommentBarrage").classList.add("on");
         anzhiyu.snackbarShow("✨ 已開啟留言彈幕");
         localStorage.removeItem("commentBarrageSwitch");
@@ -1327,7 +1327,7 @@ const anzhiyu = {
       e.preventDefault();
     });
   },
-  // 切換選單顯示熱評
+  // 切換選單顯示熱門留言
   switchRightClickMenuHotReview: function () {
     const postComment = document.getElementById("post-comment");
     const menuCommentBarrageDom = document.getElementById("menu-commentBarrage");

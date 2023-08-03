@@ -1,6 +1,6 @@
-if site.data.stars && theme.stars.enable
-  #stars_page
-    .author-content.author-content-item.starsPage.single(style = theme.stars.enable ? `background: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)), url(${theme.stars.top_background}) center calc(50% + 3%) / cover no-repeat;` : "")
+#stars_page
+    - let stars_background = page.top_background
+    .author-content.author-content-item.starsPage.single(style = stars_background ? `background: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)), url(${stars_background}) center calc(50% + 3%) / cover no-repeat;` : "")
       .card-content
         .author-content-item-tips 工具收藏
         span.author-content-item-title 各種工具推薦頁

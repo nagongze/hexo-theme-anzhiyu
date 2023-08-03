@@ -23,6 +23,7 @@
     !=partial('includes/widget/card_weixin', {}, {cache: true})
     !=partial('includes/widget/card_top_self', {}, {cache: true})
     !=partial('includes/widget/card_categories', {}, {cache: true})  
+    !=partial('includes/widget/card_bottom_self', {}, {cache: true})
 
     .sticky_layout
       if showToc
@@ -33,4 +34,3 @@
         !=partial('includes/widget/card_tags', {}, {cache: true})
         !=partial('includes/widget/card_archives', {}, {cache: true})
         !=partial('includes/widget/card_webinfo', {}, {cache: true})
-        !=partial('includes/widget/card_bottom_self', {}, {cache: true})

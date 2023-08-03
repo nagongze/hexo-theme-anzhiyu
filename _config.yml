@@ -241,10 +241,10 @@ post_meta:
 
 # 主色調相關配置
 mainTone:
-  enable: ftrue # true or false 文章是否啟用獲取圖片主色調
+  enable: true # true or false 文章是否啟用獲取圖片主色調
   mode: api # cdn/api/both cdn模式為圖片url+imageAve引數獲取主色調，api模式為請求API獲取主色調，both模式會先請求cdn引數，無法獲取的情況下將請求API獲取
   # 專案地址：https://github.com/anzhiyu-c/img2color-go
-  api: https://img2color-go.vercel.app/api?img= # mode為api時可填寫
+  api: https://img2color-go-nagongze.vercel.app/api?img= # mode為api時可填寫
   cover_change: true # 整篇文章跟隨cover修改主色調
 
 # wordcount (字數統計)
@@ -267,14 +267,6 @@ index_post_content:
 # anchor
 # when you scroll in post, the URL will update according to header id.
 anchor: true
-
-stars: 
-  enable: true
-  top_background: https://storage.nagongze.me/file/about/ttt.png
-
-mmdcollect: 
-  enable: true
-  top_background: https://storage.nagongze.me/file/about/ttt.png
 
 # Post
 # --------------------------------------
@@ -721,7 +713,7 @@ h2Divider: false
 table_interlaced_discoloration: true
 
 # 首頁雙欄顯示
-article_double_row: true
+article_double_row: false
 
 # The top_img settings of home page
 # default: top img - full screen, site info - middle (預設top_img全屏，site_info在中間)

@@ -47,7 +47,7 @@
         color: var(--anzhiyu-lighttext);
         font-size: 0.5rem;
         margin-right: 8px;
-        top: 20px;
+        top: 0px;
         left: 32px
         +maxWidth768()
           top: 2px;
@@ -133,7 +133,7 @@
       height: 174px;
       cursor: pointer;
       position: relative;
-      padding: 0;
+      padding: 23px 0 10px;
       display: inline-block;
       overflow: hidden;
 
@@ -149,7 +149,6 @@
       & > .article-title
         margin: 0 !important;
         padding: 0 32px;
-        position: absolute;
         top: 40px;
         @extend .limit-more-line
         color: var(--text-highlight-color)
@@ -241,9 +240,9 @@
           &:hover
             color: $text-hover
 
-      & > .content
-        @extend .limit-more-line
-        -webkit-line-clamp: 2
+        .content
+          @extend .limit-more-line
+          -webkit-line-clamp: 2
 
 #topPostGroup
   display: flex;
@@ -330,8 +329,6 @@ if hexo-config('article_double_row') == true
         height: auto
         width: 49%
         .recent-post-info
-          .content
-            display: none
           .article-title
             font-size: 1.72em
         .post_cover
@@ -391,5 +388,5 @@ if hexo-config('article_double_row') == true
   color: var(--anzhiyu-secondtext);
   margin-top: 0.5rem;
   font-size: 14px;
-  opacity 0
-  height 0
+  padding: 0 0 0 32px;
+  white-space: break-all;
